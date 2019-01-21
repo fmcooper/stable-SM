@@ -42,7 +42,7 @@ Authors: Frances Cooper and David Manlove
 Submitted to MATCH-UP 2019
 
 The data is located at: https://doi.org/10.5281/zenodo.2542703
-The software is located at: https://doi.org/
+The software is located at: https://doi.org/10.5281/zenodo.2545798
 
 
 ******************************
