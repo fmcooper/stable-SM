@@ -1,0 +1,25 @@
+
+Stable_correctness_tests: Date: 2019/1/21  Time: 18:12:25
+
+Stable_numStableMatchings: 8
+Stable_numPassedAcceptability: 8
+Stable_numPassedCapacity: 8
+Stable_numPassedStability: 8
+exitCode 0
+correctness/Main_Tester completed
+
+solutions_found_by_ip:
+3 6 1 8 7 5 2 4
+3 6 1 8 2 5 7 4
+3 6 2 8 1 5 7 4
+8 3 1 6 7 5 2 4
+8 3 5 6 7 1 2 4
+5 3 8 6 7 1 2 4
+8 3 1 6 2 5 7 4
+3 6 5 8 7 1 2 4
+
+num_solutions_found_by_ip: 8
+
+Duration_ip_milliseconds: 541
+exitCode 0
+correctness/pulpIP.py completed

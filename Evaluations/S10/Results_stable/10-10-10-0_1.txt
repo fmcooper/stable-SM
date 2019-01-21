@@ -1,0 +1,83 @@
+// General stats
+numRotations: 2
+numStableMatchings: 3
+
+
+// Rotations
+rotation_0: (1, 1) (9, 3) 
+rotProfileMen_0: -2 1 1 0 0 0 0 0 0 0 
+rotProfileWomen_0: 0 0 1 -1 0 1 0 -1 0 0 
+rotProfileCombined_0: -2 1 2 -1 0 1 0 -1 0 0 
+ --- 
+rotation_1: (1, 3) (5, 8) (7, 10) 
+rotProfileMen_1: 0 -1 0 0 -1 1 0 0 0 1 
+rotProfileWomen_1: 2 0 0 -1 0 -1 0 0 0 0 
+rotProfileCombined_1: 2 -1 0 -1 -1 0 0 0 0 1 
+ --- 
+
+
+// Stable matchings
+// found using rotations not digraph
+
+optimal_stable_matchings: 
+rank-maximal_index: 2
+generous_index: 1
+sex_equal_index: 1
+egalitarian_index: 0
+generalisedMedian_index: 1
+
+stable_matching_list:
+1 2 7 6 8 4 10 5 3 9 
+3 2 7 6 8 4 10 5 1 9 
+8 2 7 6 10 4 3 5 1 9 
+
+
+matching_0: 1 2 7 6 8 4 10 5 3 9 
+profileMen_0: 4 3 1 0 2 0 0 0 0 0 
+profileWomen_0: 3 0 2 2 1 1 0 1 0 0 
+profileCombined_0: 7 3 3 2 3 1 0 1 0 0 
+costMen_0: 23
+costWomen_0: 36
+costCombined_0: 59
+sexEquality_0: 13
+
+ --- 
+matching_1: 3 2 7 6 8 4 10 5 1 9 
+profileMen_1: 2 4 2 0 2 0 0 0 0 0 
+profileWomen_1: 3 0 3 1 1 2 0 0 0 0 
+profileCombined_1: 5 4 5 1 3 2 0 0 0 0 
+costMen_1: 26
+costWomen_1: 33
+costCombined_1: 59
+sexEquality_1: 7
+
+ --- 
+matching_2: 8 2 7 6 10 4 3 5 1 9 
+profileMen_2: 2 3 2 0 1 1 0 0 0 1 
+profileWomen_2: 5 0 3 0 1 1 0 0 0 0 
+profileCombined_2: 7 3 5 0 2 2 0 0 0 1 
+costMen_2: 35
+costWomen_2: 25
+costCombined_2: 60
+sexEquality_2: 10
+
+ --- 
+Digraph 
+(0,0) (1,0) 
+(0,0) (0,0) 
+
+Simple digraph 
+1 
+
+
+
+
+
+Duration_ModCreation_milliseconds: 65
+Duration_GetSolution_milliseconds: 7
+Duration_CollectRes_milliseconds: 0
+
+Duration_Total_milliseconds: 192
+
+exitCode 0
+code/Main_GetStableMatchings completed

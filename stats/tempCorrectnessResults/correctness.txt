@@ -1,0 +1,26 @@
+Correctness runthrough conducted at: 2019-01-21 18:22
+
+# experiment: S10	totalChecked: 2	totalTimeout: 0	totalIPTimeout: 0	totalPassed: 2	totalFailedOrError: 0	
+# experiment: S20	totalChecked: 2	totalTimeout: 0	totalIPTimeout: 0	totalPassed: 2	totalFailedOrError: 0	
+# experiment: S30	totalChecked: 2	totalTimeout: 0	totalIPTimeout: 0	totalPassed: 2	totalFailedOrError: 0	
+# experiment: S40	totalChecked: 2	totalTimeout: 0	totalIPTimeout: 0	totalPassed: 2	totalFailedOrError: 0	
+# experiment: S50	totalChecked: 2	totalTimeout: 0	totalIPTimeout: 2	totalPassed: 2	totalFailedOrError: 0	
+# experiment: S60	totalChecked: 2	totalTimeout: 0	totalIPTimeout: 2	totalPassed: 2	totalFailedOrError: 0	
+# experiment: S70	totalChecked: 2	totalTimeout: 0	totalIPTimeout: 0	totalPassed: 2	totalFailedOrError: 0	
+# experiment: S80	totalChecked: 2	totalTimeout: 0	totalIPTimeout: 0	totalPassed: 2	totalFailedOrError: 0	
+# experiment: S90	totalChecked: 2	totalTimeout: 0	totalIPTimeout: 0	totalPassed: 2	totalFailedOrError: 0	
+# experiment: S100	totalChecked: 2	totalTimeout: 0	totalIPTimeout: 0	totalPassed: 2	totalFailedOrError: 0	
+# experiment: S200	totalChecked: 2	totalTimeout: 0	totalIPTimeout: 0	totalPassed: 2	totalFailedOrError: 0	
+# experiment: S300	totalChecked: 2	totalTimeout: 0	totalIPTimeout: 0	totalPassed: 2	totalFailedOrError: 0	
+# experiment: S400	totalChecked: 2	totalTimeout: 2	totalIPTimeout: 0	totalPassed: 0	totalFailedOrError: 0	
+# experiment: S500	totalChecked: 2	totalTimeout: 2	totalIPTimeout: 0	totalPassed: 0	totalFailedOrError: 0	
+# experiment: S600	totalChecked: 2	totalTimeout: 2	totalIPTimeout: 0	totalPassed: 0	totalFailedOrError: 0	
+# experiment: S700	totalChecked: 2	totalTimeout: 2	totalIPTimeout: 0	totalPassed: 0	totalFailedOrError: 0	
+# experiment: S800	totalChecked: 2	totalTimeout: 2	totalIPTimeout: 0	totalPassed: 0	totalFailedOrError: 0	
+# experiment: S900	totalChecked: 2	totalTimeout: 2	totalIPTimeout: 0	totalPassed: 0	totalFailedOrError: 0	
+# experiment: S1000	totalChecked: 2	totalTimeout: 2	totalIPTimeout: 0	totalPassed: 0	totalFailedOrError: 0	
+
+# errors: 
+
+
+# fails: 

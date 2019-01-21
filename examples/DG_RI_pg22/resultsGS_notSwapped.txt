@@ -1,0 +1,24 @@
+4
+1: 1 2 3 4 
+2: 2 1 4 3 
+3: 3 4 1 2 
+4: 4 3 2 1 
+1: 4 3 2 1 
+2: 3 4 1 2 
+3: 2 1 4 3 
+4: 1 2 3 4 
+
+
+
+Updated preference list above: can be reinput into program.
+Duration_ModCreation_milliseconds: 18
+Duration_GetSolution_milliseconds: 0
+Duration_CollectRes_milliseconds: 0
+
+RawResults: 
+1 2 3 4 
+
+Duration_Total_milliseconds: 47
+
+exitCode 0
+code/Main_GS

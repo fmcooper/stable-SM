@@ -1,0 +1,359 @@
+// General stats
+numRotations: 10
+numStableMatchings: 23
+
+
+// Rotations
+rotation_0: (1, 3) (2, 1) 
+rotProfileMen_0: -1 0 1 0 0 0 0 0 
+rotProfileWomen_0: 0 0 0 1 -1 1 -1 0 
+rotProfileCombined_0: -1 0 1 1 -1 1 -1 0 
+ --- 
+rotation_1: (4, 5) (7, 8) (6, 6) 
+rotProfileMen_1: -2 -1 2 1 0 0 0 0 
+rotProfileWomen_1: 0 0 2 -1 0 -1 0 0 
+rotProfileCombined_1: -2 -1 4 0 0 -1 0 0 
+ --- 
+rotation_2: (3, 7) (5, 4) (8, 2) 
+rotProfileMen_2: -3 1 2 0 0 0 0 0 
+rotProfileWomen_2: 0 0 1 -1 1 1 -2 0 
+rotProfileCombined_2: -3 1 3 -1 1 1 -2 0 
+ --- 
+rotation_3: (1, 1) (6, 5) (8, 7) 
+rotProfileMen_3: 0 -1 -1 2 0 0 0 0 
+rotProfileWomen_3: 0 0 2 0 -1 -1 0 0 
+rotProfileCombined_3: 0 -1 1 2 -1 -1 0 0 
+ --- 
+rotation_4: (3, 4) (2, 3) 
+rotProfileMen_4: 0 -1 0 1 0 0 0 0 
+rotProfileWomen_4: 0 0 1 1 -1 -1 0 0 
+rotProfileCombined_4: 0 -1 1 2 -1 -1 0 0 
+ --- 
+rotation_5: (4, 8) (7, 6) (5, 2) 
+rotProfileMen_5: 0 0 -2 0 2 0 0 0 
+rotProfileWomen_5: 0 3 -3 0 0 0 0 0 
+rotProfileCombined_5: 0 3 -5 0 2 0 0 0 
+ --- 
+rotation_6: (6, 7) (2, 4) (5, 8) 
+rotProfileMen_6: 0 0 0 -3 2 1 0 0 
+rotProfileWomen_6: 2 -1 0 -1 0 0 0 0 
+rotProfileCombined_6: 2 -1 0 -4 2 1 0 0 
+ --- 
+rotation_7: (3, 3) (8, 1) 
+rotProfileMen_7: 0 0 -1 -1 0 2 0 0 
+rotProfileWomen_7: 0 1 0 -1 0 0 0 0 
+rotProfileCombined_7: 0 1 -1 -2 0 2 0 0 
+ --- 
+rotation_8: (1, 5) (5, 7) (8, 3) 
+rotProfileMen_8: 0 0 -1 1 -1 0 0 1 
+rotProfileWomen_8: 2 1 -3 0 0 0 0 0 
+rotProfileCombined_8: 2 1 -4 1 -1 0 0 1 
+ --- 
+rotation_9: (3, 1) (7, 2) (5, 3) (4, 6) 
+rotProfileMen_9: 0 0 0 0 -2 0 2 0 
+rotProfileWomen_9: 4 -4 0 0 0 0 0 0 
+rotProfileCombined_9: 4 -4 0 0 -2 0 2 0 
+ --- 
+
+
+// Stable matchings
+// found using rotations not digraph
+
+optimal_stable_matchings: 
+rank-maximal_index: 11
+generous_index: 5
+sex_equal_index: 15
+egalitarian_index: 5
+generalisedMedian_index: 3
+
+stable_matching_list:
+3 1 7 5 4 6 8 2 
+1 3 7 5 4 6 8 2 
+1 3 7 8 4 5 6 2 
+1 3 4 8 2 5 6 7 
+5 3 4 8 2 7 6 1 
+5 4 3 8 2 7 6 1 
+5 4 3 6 8 7 2 1 
+5 4 1 6 8 7 2 3 
+5 8 3 6 7 4 2 1 
+5 8 1 6 7 4 2 3 
+7 8 1 6 3 4 2 5 
+7 8 2 1 6 4 3 5 
+5 4 1 8 2 7 6 3 
+5 3 4 6 8 7 2 1 
+1 4 3 8 2 5 6 7 
+1 4 3 6 8 5 2 7 
+1 3 4 6 8 5 2 7 
+1 3 4 5 2 6 8 7 
+1 4 3 5 2 6 8 7 
+3 1 7 8 4 5 6 2 
+3 1 4 8 2 5 6 7 
+3 1 4 6 8 5 2 7 
+3 1 4 5 2 6 8 7 
+
+
+matching_0: 3 1 7 5 4 6 8 2 
+profileMen_0: 6 2 0 0 0 0 0 0 
+profileWomen_0: 0 0 0 2 2 1 3 0 
+profileCombined_0: 6 2 0 2 2 1 3 0 
+costMen_0: 10
+costWomen_0: 45
+costCombined_0: 55
+sexEquality_0: 35
+
+ --- 
+matching_1: 1 3 7 5 4 6 8 2 
+profileMen_1: 5 2 1 0 0 0 0 0 
+profileWomen_1: 0 0 0 3 1 2 2 0 
+profileCombined_1: 5 2 1 3 1 2 2 0 
+costMen_1: 12
+costWomen_1: 43
+costCombined_1: 55
+sexEquality_1: 31
+
+ --- 
+matching_2: 1 3 7 8 4 5 6 2 
+profileMen_2: 3 1 3 1 0 0 0 0 
+profileWomen_2: 0 0 2 2 1 1 2 0 
+profileCombined_2: 3 1 5 3 1 1 2 0 
+costMen_2: 18
+costWomen_2: 39
+costCombined_2: 57
+sexEquality_2: 21
+
+ --- 
+matching_3: 1 3 4 8 2 5 6 7 
+profileMen_3: 0 2 5 1 0 0 0 0 
+profileWomen_3: 0 0 3 1 2 2 0 0 
+profileCombined_3: 0 2 8 2 2 2 0 0 
+costMen_3: 23
+costWomen_3: 35
+costCombined_3: 58
+sexEquality_3: 12
+
+ --- 
+matching_4: 5 3 4 8 2 7 6 1 
+profileMen_4: 0 1 4 3 0 0 0 0 
+profileWomen_4: 0 0 5 1 1 1 0 0 
+profileCombined_4: 0 1 9 4 1 1 0 0 
+costMen_4: 26
+costWomen_4: 30
+costCombined_4: 56
+sexEquality_4: 4
+
+ --- 
+matching_5: 5 4 3 8 2 7 6 1 
+profileMen_5: 0 0 4 4 0 0 0 0 
+profileWomen_5: 0 0 6 2 0 0 0 0 
+profileCombined_5: 0 0 10 6 0 0 0 0 
+costMen_5: 28
+costWomen_5: 26
+costCombined_5: 54
+sexEquality_5: 2
+
+ --- 
+matching_6: 5 4 3 6 8 7 2 1 
+profileMen_6: 0 0 2 4 2 0 0 0 
+profileWomen_6: 0 3 3 2 0 0 0 0 
+profileCombined_6: 0 3 5 6 2 0 0 0 
+costMen_6: 32
+costWomen_6: 23
+costCombined_6: 55
+sexEquality_6: 9
+
+ --- 
+matching_7: 5 4 1 6 8 7 2 3 
+profileMen_7: 0 0 1 3 2 2 0 0 
+profileWomen_7: 0 4 3 1 0 0 0 0 
+profileCombined_7: 0 4 4 4 2 2 0 0 
+costMen_7: 37
+costWomen_7: 21
+costCombined_7: 58
+sexEquality_7: 16
+
+ --- 
+matching_8: 5 8 3 6 7 4 2 1 
+profileMen_8: 0 0 2 1 4 1 0 0 
+profileWomen_8: 2 2 3 1 0 0 0 0 
+profileCombined_8: 2 2 5 2 4 1 0 0 
+costMen_8: 36
+costWomen_8: 19
+costCombined_8: 55
+sexEquality_8: 17
+
+ --- 
+matching_9: 5 8 1 6 7 4 2 3 
+profileMen_9: 0 0 1 0 4 3 0 0 
+profileWomen_9: 2 3 3 0 0 0 0 0 
+profileCombined_9: 2 3 4 0 4 3 0 0 
+costMen_9: 41
+costWomen_9: 17
+costCombined_9: 58
+sexEquality_9: 24
+
+ --- 
+matching_10: 7 8 1 6 3 4 2 5 
+profileMen_10: 0 0 0 1 3 3 0 1 
+profileWomen_10: 4 4 0 0 0 0 0 0 
+profileCombined_10: 4 4 0 1 3 3 0 1 
+costMen_10: 45
+costWomen_10: 12
+costCombined_10: 57
+sexEquality_10: 33
+
+ --- 
+matching_11: 7 8 2 1 6 4 3 5 
+profileMen_11: 0 0 0 1 1 3 2 1 
+profileWomen_11: 8 0 0 0 0 0 0 0 
+profileCombined_11: 8 0 0 1 1 3 2 1 
+costMen_11: 49
+costWomen_11: 8
+costCombined_11: 57
+sexEquality_11: 41
+
+ --- 
+matching_12: 5 4 1 8 2 7 6 3 
+profileMen_12: 0 0 3 3 0 2 0 0 
+profileWomen_12: 0 1 6 1 0 0 0 0 
+profileCombined_12: 0 1 9 4 0 2 0 0 
+costMen_12: 33
+costWomen_12: 24
+costCombined_12: 57
+sexEquality_12: 9
+
+ --- 
+matching_13: 5 3 4 6 8 7 2 1 
+profileMen_13: 0 1 2 3 2 0 0 0 
+profileWomen_13: 0 3 2 1 1 1 0 0 
+profileCombined_13: 0 4 4 4 3 1 0 0 
+costMen_13: 30
+costWomen_13: 27
+costCombined_13: 57
+sexEquality_13: 3
+
+ --- 
+matching_14: 1 4 3 8 2 5 6 7 
+profileMen_14: 0 1 5 2 0 0 0 0 
+profileWomen_14: 0 0 4 2 1 1 0 0 
+profileCombined_14: 0 1 9 4 1 1 0 0 
+costMen_14: 25
+costWomen_14: 31
+costCombined_14: 56
+sexEquality_14: 6
+
+ --- 
+matching_15: 1 4 3 6 8 5 2 7 
+profileMen_15: 0 1 3 2 2 0 0 0 
+profileWomen_15: 0 3 1 2 1 1 0 0 
+profileCombined_15: 0 4 4 4 3 1 0 0 
+costMen_15: 29
+costWomen_15: 28
+costCombined_15: 57
+sexEquality_15: 1
+
+ --- 
+matching_16: 1 3 4 6 8 5 2 7 
+profileMen_16: 0 2 3 1 2 0 0 0 
+profileWomen_16: 0 3 0 1 2 2 0 0 
+profileCombined_16: 0 5 3 2 4 2 0 0 
+costMen_16: 27
+costWomen_16: 32
+costCombined_16: 59
+sexEquality_16: 5
+
+ --- 
+matching_17: 1 3 4 5 2 6 8 7 
+profileMen_17: 2 3 3 0 0 0 0 0 
+profileWomen_17: 0 0 1 2 2 3 0 0 
+profileCombined_17: 2 3 4 2 2 3 0 0 
+costMen_17: 17
+costWomen_17: 39
+costCombined_17: 56
+sexEquality_17: 22
+
+ --- 
+matching_18: 1 4 3 5 2 6 8 7 
+profileMen_18: 2 2 3 1 0 0 0 0 
+profileWomen_18: 0 0 2 3 1 2 0 0 
+profileCombined_18: 2 2 5 4 1 2 0 0 
+costMen_18: 19
+costWomen_18: 35
+costCombined_18: 54
+sexEquality_18: 16
+
+ --- 
+matching_19: 3 1 7 8 4 5 6 2 
+profileMen_19: 4 1 2 1 0 0 0 0 
+profileWomen_19: 0 0 2 1 2 0 3 0 
+profileCombined_19: 4 1 4 2 2 0 3 0 
+costMen_19: 16
+costWomen_19: 41
+costCombined_19: 57
+sexEquality_19: 25
+
+ --- 
+matching_20: 3 1 4 8 2 5 6 7 
+profileMen_20: 1 2 4 1 0 0 0 0 
+profileWomen_20: 0 0 3 0 3 1 1 0 
+profileCombined_20: 1 2 7 1 3 1 1 0 
+costMen_20: 21
+costWomen_20: 37
+costCombined_20: 58
+sexEquality_20: 16
+
+ --- 
+matching_21: 3 1 4 6 8 5 2 7 
+profileMen_21: 1 2 2 1 2 0 0 0 
+profileWomen_21: 0 3 0 0 3 1 1 0 
+profileCombined_21: 1 5 2 1 5 1 1 0 
+costMen_21: 25
+costWomen_21: 34
+costCombined_21: 59
+sexEquality_21: 9
+
+ --- 
+matching_22: 3 1 4 5 2 6 8 7 
+profileMen_22: 3 3 2 0 0 0 0 0 
+profileWomen_22: 0 0 1 1 3 2 1 0 
+profileCombined_22: 3 3 3 1 3 2 1 0 
+costMen_22: 15
+costWomen_22: 41
+costCombined_22: 56
+sexEquality_22: 26
+
+ --- 
+Digraph 
+(0,0) (0,0) (0,0) (1,0) (1,0) (0,0) (0,0) (0,0) (0,0) (0,0) 
+(0,0) (0,0) (0,0) (1,0) (0,0) (1,0) (0,0) (0,0) (0,0) (0,0) 
+(0,0) (0,0) (0,0) (1,0) (1,0) (1,0) (0,0) (0,0) (0,0) (0,0) 
+(0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (1,0) (1,0) (1,0) (0,0) 
+(0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (1,0) (1,0) (0,0) (0,0) 
+(0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (1,0) (0,0) (0,0) (1,0) 
+(0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (1,0) (0,0) 
+(0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (1,0) (1,0) 
+(0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (1,0) 
+(0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) (0,0) 
+
+Simple digraph 
+3 4 
+3 5 
+3 4 5 
+6 7 8 
+6 7 
+6 9 
+8 
+8 9 
+9 
+
+
+
+
+
+Duration_ModCreation_milliseconds: 20
+Duration_GetSolution_milliseconds: 4
+Duration_CollectRes_milliseconds: 0
+
+Duration_Total_milliseconds: 54
+
+exitCode 0
+code/Main_GetStableMatchings completed
