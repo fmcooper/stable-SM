@@ -789,6 +789,29 @@ public class Model {
 	}
 
 
+		/**
+	 * <p> Returns a string list of all stable matchings of the instance. </p>
+	 * @return rotations
+	 */
+	public String getResultsWithoutMatchings() {
+		// String s = getUseableInstance(false) +"\n\n";
+
+		String s = "// General stats\n";
+		s += "numRotations: " + rotations.size() + "\n";
+
+		s += "// Rotations\n";
+		for (int i = 0; i < rotations.size(); i++) {
+			Rotation r = rotations.get(i);
+			s += r.getString(i) + "\n";
+			s += "rotProfileMen_" + i + ": " + rotationProfileChange(i, OptsProfile.proposerView) + "\n";
+			s += "rotProfileWomen_" + i + ": " + rotationProfileChange(i, OptsProfile.receiverView) + "\n";
+			s += "rotProfileCombined_" + i + ": " + rotationProfileChange(i, OptsProfile.combinedView) + "\n --- \n";
+		}
+
+		return s;
+	}
+
+
 	/**
 	 * <p> Returns the profile of the matching. </p>
 	 * @param matching

@@ -1,3 +1,0 @@
-gtimeout 10 s
-exitCode 124
-code/Main_GS completed

@@ -1,0 +1,230 @@
+Stats runthrough conducted at: 2019-03-12 12:16
+
+
+# stats file for all instance types of S10
+S10totalInstances 1000.0
+S10totalInstancesUsedInCalcs 1000.0
+S10avNumRotations 1.8
+S10avMinRotDegree 0.3
+S10avMaxRotDegree 10.0
+S10avAvRotDegree 8.2
+S10avAvNpDegree 5.2
+S10avBitsExp 53.8
+S10avBitsTruncated 88.4
+S10avBitsIndices 92.9
+
+# stats file for all instance types of S20
+S20totalInstances 1000.0
+S20totalInstancesUsedInCalcs 1000.0
+S20avNumRotations 4.2
+S20avMinRotDegree 3.7
+S20avMaxRotDegree 20.0
+S20avAvRotDegree 15.0
+S20avAvNpDegree 7.4
+S20avBitsExp 346.3
+S20avBitsTruncated 437.5
+S20avBitsIndices 369.3
+
+# stats file for all instance types of S30
+S30totalInstances 1000.0
+S30totalInstancesUsedInCalcs 1000.0
+S30avNumRotations 6.5
+S30avMinRotDegree 1.9
+S30avMaxRotDegree 30.0
+S30avAvRotDegree 20.8
+S30avAvNpDegree 8.7
+S30avBitsExp 934.4
+S30avBitsTruncated 951.7
+S30avBitsIndices 684.2
+
+# stats file for all instance types of S40
+S40totalInstances 1000.0
+S40totalInstancesUsedInCalcs 1000.0
+S40avNumRotations 8.9
+S40avMinRotDegree 5.9
+S40avMaxRotDegree 40.0
+S40avAvRotDegree 26.6
+S40avAvNpDegree 9.9
+S40avBitsExp 1857.9
+S40avBitsTruncated 1901.3
+S40avBitsIndices 1240.4
+
+# stats file for all instance types of S50
+S50totalInstances 1000.0
+S50totalInstancesUsedInCalcs 1000.0
+S50avNumRotations 11.2
+S50avMinRotDegree 4.4
+S50avMaxRotDegree 50.0
+S50avAvRotDegree 31.9
+S50avAvNpDegree 11.0
+S50avBitsExp 3092.8
+S50avBitsTruncated 2848.6
+S50avBitsIndices 1724.3
+
+# stats file for all instance types of S60
+S60totalInstances 1000.0
+S60totalInstancesUsedInCalcs 1000.0
+S60avNumRotations 13.4
+S60avMinRotDegree 5.4
+S60avMaxRotDegree 60.0
+S60avAvRotDegree 36.9
+S60avAvNpDegree 12.0
+S60avBitsExp 4662.8
+S60avBitsTruncated 3948.1
+S60avBitsIndices 2245.0
+
+# stats file for all instance types of S70
+S70totalInstances 1000.0
+S70totalInstancesUsedInCalcs 1000.0
+S70avNumRotations 15.9
+S70avMinRotDegree 7.2
+S70avMaxRotDegree 70.0
+S70avAvRotDegree 42.0
+S70avAvNpDegree 12.8
+S70avBitsExp 6739.6
+S70avBitsTruncated 6024.9
+S70avBitsIndices 3270.5
+
+# stats file for all instance types of S80
+S80totalInstances 1000.0
+S80totalInstancesUsedInCalcs 1000.0
+S80avNumRotations 18.2
+S80avMinRotDegree 6.3
+S80avMaxRotDegree 80.0
+S80avAvRotDegree 46.4
+S80avAvNpDegree 13.6
+S80avBitsExp 9110.9
+S80avBitsTruncated 7602.6
+S80avBitsIndices 3972.6
+
+# stats file for all instance types of S90
+S90totalInstances 1000.0
+S90totalInstancesUsedInCalcs 1000.0
+S90avNumRotations 20.0
+S90avMinRotDegree 6.3
+S90avMaxRotDegree 90.0
+S90avAvRotDegree 51.3
+S90avAvNpDegree 14.4
+S90avBitsExp 11576.2
+S90avBitsTruncated 9246.6
+S90avBitsIndices 4625.1
+
+# stats file for all instance types of S100
+S100totalInstances 1000.0
+S100totalInstancesUsedInCalcs 1000.0
+S100avNumRotations 22.4
+S100avMinRotDegree 6.6
+S100avMaxRotDegree 100.0
+S100avAvRotDegree 56.0
+S100avAvNpDegree 15.0
+S100avBitsExp 14726.4
+S100avBitsTruncated 11287.0
+S100avBitsIndices 5383.3
+
+# stats file for all instance types of S200
+S200totalInstances 1000.0
+S200totalInstancesUsedInCalcs 1000.0
+S200avNumRotations 41.9
+S200avMinRotDegree 11.9
+S200avMaxRotDegree 200.0
+S200avAvRotDegree 97.8
+S200avAvNpDegree 20.7
+S200avBitsExp 63721.6
+S200avBitsTruncated 40930.2
+S200avBitsIndices 15606.4
+
+# stats file for all instance types of S300
+S300totalInstances 1000.0
+S300totalInstancesUsedInCalcs 1000.0
+S300avNumRotations 59.2
+S300avMinRotDegree 14.3
+S300avMaxRotDegree 299.9
+S300avAvRotDegree 135.6
+S300avAvNpDegree 25.4
+S300avBitsExp 145636.1
+S300avBitsTruncated 88270.4
+S300avBitsIndices 30018.0
+
+# stats file for all instance types of S400
+S400totalInstances 1000.0
+S400totalInstancesUsedInCalcs 1000.0
+S400avNumRotations 76.2
+S400avMinRotDegree 15.1
+S400avMaxRotDegree 400.0
+S400avAvRotDegree 172.8
+S400avAvNpDegree 29.1
+S400avBitsExp 262816.2
+S400avBitsTruncated 144871.2
+S400avBitsIndices 44278.4
+
+# stats file for all instance types of S500
+S500totalInstances 1000.0
+S500totalInstancesUsedInCalcs 1000.0
+S500avNumRotations 90.7
+S500avMinRotDegree 17.9
+S500avMaxRotDegree 499.8
+S500avAvRotDegree 205.3
+S500avAvNpDegree 32.2
+S500avBitsExp 405475.4
+S500avBitsTruncated 204716.3
+S500avBitsIndices 58429.4
+
+# stats file for all instance types of S600
+S600totalInstances 1000.0
+S600totalInstancesUsedInCalcs 1000.0
+S600avNumRotations 105.8
+S600avMinRotDegree 21.4
+S600avMaxRotDegree 599.7
+S600avAvRotDegree 239.0
+S600avAvNpDegree 35.1
+S600avBitsExp 584770.7
+S600avBitsTruncated 303454.0
+S600avBitsIndices 81811.5
+
+# stats file for all instance types of S700
+S700totalInstances 1000.0
+S700totalInstancesUsedInCalcs 1000.0
+S700avNumRotations 119.1
+S700avMinRotDegree 25.5
+S700avMaxRotDegree 699.9
+S700avAvRotDegree 270.8
+S700avAvNpDegree 38.1
+S700avBitsExp 786798.7
+S700avBitsTruncated 387128.8
+S700avBitsIndices 99917.7
+
+# stats file for all instance types of S800
+S800totalInstances 1000.0
+S800totalInstancesUsedInCalcs 999.0
+S800avNumRotations 131.4
+S800avMinRotDegree 24.4
+S800avMaxRotDegree 800.0
+S800avAvRotDegree 302.8
+S800avAvNpDegree 40.6
+S800avBitsExp 1012258.3
+S800avBitsTruncated 477303.1
+S800avBitsIndices 117223.0
+
+# stats file for all instance types of S900
+S900totalInstances 1000.0
+S900totalInstancesUsedInCalcs 1000.0
+S900avNumRotations 144.9
+S900avMinRotDegree 25.1
+S900avMaxRotDegree 899.8
+S900avAvRotDegree 334.7
+S900avAvNpDegree 42.9
+S900avBitsExp 1277748.1
+S900avBitsTruncated 581780.1
+S900avBitsIndices 136866.8
+
+# stats file for all instance types of S1000
+S1000totalInstances 1000.0
+S1000totalInstancesUsedInCalcs 999.0
+S1000avNumRotations 157.6
+S1000avMinRotDegree 28.5
+S1000avMaxRotDegree 999.8
+S1000avAvRotDegree 365.4
+S1000avAvNpDegree 45.1
+S1000avBitsExp 1568330.3
+S1000avBitsTruncated 690975.7
+S1000avBitsIndices 156498.1

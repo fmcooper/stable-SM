@@ -1,9 +1,0 @@
-
-Stable_correctness_tests: Date: 2019/1/21  Time: 18:22:27
-
-Stable_numStableMatchings: 290
-Stable_numPassedAcceptability: 290
-Stable_numPassedCapacity: 290
-Stable_numPassedStability: 290
-exitCode 0
-correctness/Main_Tester completed

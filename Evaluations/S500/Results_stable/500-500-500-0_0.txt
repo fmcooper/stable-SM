@@ -1,3 +1,0 @@
-upstream timeout gtimeout 10 s
-exitCode 4
-code/Main_GetStableMatchings completed
