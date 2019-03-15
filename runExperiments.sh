@@ -7,7 +7,7 @@ CTTIMEOUTTIME=100					# timeout time for correctness testing
 TIMEOUT="gtimeout $TIMEOUTTIME"		# timeout operation ** set command to "timeout" for linux and "gtimeout" for mac
 PREPATH="./Evaluations/"			# location of your results
 PARALLEL_OPTS="--jobs 4 --bar"		# changes the number of parallel jobs running
-JAVA_OPTS="-cp $(CLASSPATH):../ -XX:+UseSerialGC -Xmx1G" 	# java options, serial garbace collection, heap space
+JAVA_OPTS="-cp $(CLASSPATH):../ -XX:+UseSerialGC -Xmx1G" 	# java options, serial garbage collection, heap space
 
 
 # variables used by other programs (don't change unless necessary)
