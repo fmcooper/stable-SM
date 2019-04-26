@@ -979,7 +979,7 @@ public class Model {
 			ArrayList<Person[]> listInvolved = r.getRotation();
 			for (Person[] p : listInvolved) {
 				p[0] = proposers[p[0].getIdIndex()];
-				p[1] = proposers[p[1].getIdIndex()];
+				p[1] = receivers[p[1].getIdIndex()];
 			}
 		}
 
