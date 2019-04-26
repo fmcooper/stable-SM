@@ -1,0 +1,23 @@
+
+Stable_correctness_tests: Date: 2019/1/21  Time: 18:19:46
+
+Stable_numStableMatchings: 6
+Stable_numPassedAcceptability: 6
+Stable_numPassedCapacity: 6
+Stable_numPassedStability: 6
+exitCode 0
+correctness/Main_Tester completed
+
+solutions_found_by_ip:
+3 18 10 12 11 19 17 25 39 23 26 9 38 36 37 1 29 8 7 24 22 32 35 16 30 6 13 28 15 33 21 20 40 27 2 34 5 14 31 4
+3 18 10 12 11 19 17 25 39 23 26 9 38 36 37 1 29 8 6 24 22 32 27 16 30 35 13 28 15 33 21 20 40 7 2 34 5 14 31 4
+3 18 10 12 11 19 17 25 39 21 26 9 38 36 37 1 29 8 7 24 23 32 35 6 30 34 13 28 15 33 16 20 40 27 2 22 5 14 31 4
+3 18 10 12 11 19 21 25 39 14 26 9 38 36 37 1 5 8 7 24 23 32 35 6 30 34 13 28 15 33 16 20 40 27 2 22 17 29 31 4
+3 18 10 12 11 19 21 24 39 14 26 33 38 5 37 1 15 8 7 9 25 32 35 6 30 34 13 28 23 36 16 20 40 27 2 22 17 29 31 4
+26 18 10 12 11 22 21 24 39 14 19 33 38 5 37 1 15 8 7 9 25 32 35 6 30 34 13 28 23 36 16 20 40 27 2 3 17 29 31 4
+
+num_solutions_found_by_ip: 6
+
+Duration_ip_milliseconds: 23940
+exitCode 0
+correctness/pulpIP.py completed

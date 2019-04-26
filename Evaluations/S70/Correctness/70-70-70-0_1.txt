@@ -1,0 +1,9 @@
+
+Stable_correctness_tests: Date: 2019/1/21  Time: 18:22:24
+
+Stable_numStableMatchings: 36
+Stable_numPassedAcceptability: 36
+Stable_numPassedCapacity: 36
+Stable_numPassedStability: 36
+exitCode 0
+correctness/Main_Tester completed

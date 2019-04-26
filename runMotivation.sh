@@ -2,16 +2,20 @@
 set -x
 
 # variables you may change
-TIMEOUTTIME=3600 						# timeout time for programs
-TIMEOUT="timeout $TIMEOUTTIME"		# timeout operation ** set command to "timeout" for linux and "gtimeout" for mac
+TIMEOUTTIME=86400 					# timeout time for programs
+TIMEOUT="gtimeout $TIMEOUTTIME"		# timeout operation ** set command to "timeout" for linux and "gtimeout" for mac
 PREPATH="./Evaluations/"			# location of your results
-PARALLEL_OPTS="--jobs 4 --bar"		# changes the number of parallel jobs running
-JAVA_OPTS="-cp $(CLASSPATH):../ -XX:+UseSerialGC -Xmx1G" 	# java options, serial garbage collection, heap space
+PARALLEL_OPTS="--jobs 2 --bar"		# changes the number of parallel jobs running
+JAVA_OPTS="-cp $(CLASSPATH):../ -XX:+UseSerialGC -Xmx4G" 	# java options, serial garbage collection, heap space
 
 
 # variables used by other programs (don't change unless necessary)
 INSTANCESFILE="instanceGenerator/instanceNamesMot.txt"
 RES_STABLE="Results_stable"
+RESGS_NSW="ResultsGS_notSwapped"
+RESGS_SW="ResultsGS_Swapped"
+RES_STABLE="Results_stable"
+RES_CORR="Correctness"
 
 
 export TIMEOUTTIME=$TIMEOUTTIME
@@ -86,7 +90,7 @@ cat $INSTANCESFILE | parallel $PARALLEL_OPTS runGSexperiment {} $RESGS_NSW false
 cat $INSTANCESFILE | parallel $PARALLEL_OPTS runGSexperiment {} $RESGS_SW true 
 cat $INSTANCESFILE | parallel $PARALLEL_OPTS runStableExperiment {} 
 
-
+python stats/motivation.py $PREPATH
 
 
 

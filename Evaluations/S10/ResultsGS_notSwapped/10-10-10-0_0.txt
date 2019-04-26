@@ -1,0 +1,36 @@
+10
+1: 3 2 
+2: 8 7 
+3: 1 
+4: 6 2 7 1 
+5: 2 
+6: 4 3 2 10 
+7: 10 
+8: 9 2 
+9: 5 2 7 
+10: 7 3 2 
+1: 4 3 
+2: 8 9 6 10 4 1 5 
+3: 6 10 1 
+4: 6 
+5: 9 
+6: 4 
+7: 4 9 2 10 
+8: 2 
+9: 8 
+10: 6 7 
+
+
+
+Updated preference list above: can be reinput into program.
+Duration_ModCreation_milliseconds: 146
+Duration_GetSolution_milliseconds: 65
+Duration_CollectRes_milliseconds: 0
+
+RawResults: 
+3 8 1 6 2 4 10 9 5 7 
+
+Duration_Total_milliseconds: 335
+
+exitCode 0
+code/Main_GS completed

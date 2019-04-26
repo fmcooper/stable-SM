@@ -6,6 +6,8 @@ import matplotlib.pylab as plt
 import glob
 import math
 from scipy.stats import sem
+from scipy.interpolate import interp1d, splrep, splev
+from scipy.optimize import curve_fit
 from sys import argv
 import matplotlib.ticker as FormatStrFormatter
 import os, os.path
@@ -21,7 +23,7 @@ prePath = sys.argv[1]
 
 ################# variables
 expTypeNames = ["S10", "S20", "S30", "S40", "S50", "S60", "S70", "S80", "S90", "S100", \
-                     "S200", "S300", "S400", "S500", "S600", "S700", "S800", "S900", "S1000"]
+                     "S200", "S300", "S400", "S500", "S600", "S700", "S800", "S900", "S1000", "S2000", "S3000", "S4000", "S5000"]
 dirName = "stats/motivation"
 avstats = dirName + '/avstats.txt'
 d = {}
@@ -34,7 +36,7 @@ def main():
     if not os.path.exists(dirName):
         os.makedirs(dirName)
 
-    # calculate results
+    # # calculate results
     # now = datetime.datetime.now()
     # avstatsFile = open(avstats, 'w')
     # avstatsFile.write("Stats runthrough conducted at: " + now.strftime("%Y-%m-%d %H:%M") + "\n\n")
@@ -49,9 +51,6 @@ def main():
 
         # get averages
         getAverages(exptype)
-
-    # # create table for paper
-    # createLatex()
 
     # create plots
     createPlot()
@@ -85,6 +84,34 @@ def calculateResults(exptype, prePath, postPathResults):
     avstatsFile.write('{}avBitsExp {:0.1f}\n'.format(exptype, getAverage([exp.bitsExp for exp in expStats])))
     avstatsFile.write('{}avBitsTruncated {:0.1f}\n'.format(exptype, getAverage([exp.bitsTruncated for exp in expStats])))
     avstatsFile.write('{}avBitsIndices {:0.1f}\n'.format(exptype, getAverage([exp.bitsIndices for exp in expStats])))
+
+    avstatsFile.write('{}medianBitsExp {:0.1f}\n'.format(exptype, getMedian([exp.bitsExp for exp in expStats])))
+    avstatsFile.write('{}medianBitsTruncated {:0.1f}\n'.format(exptype, getMedian([exp.bitsTruncated for exp in expStats])))
+    avstatsFile.write('{}medianBitsIndices {:0.1f}\n'.format(exptype, getMedian([exp.bitsIndices for exp in expStats])))
+    
+    avstatsFile.write('{}5PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsExp for exp in expStats], 5.0)))
+    avstatsFile.write('{}5PerTruncated {:0.1f}\n'.format(exptype, getPercentile([exp.bitsTruncated for exp in expStats], 5.0)))
+    avstatsFile.write('{}5PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsIndices for exp in expStats], 5.0)))
+    
+    avstatsFile.write('{}95PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsExp for exp in expStats], 95.0)))
+    avstatsFile.write('{}95PerTruncated {:0.1f}\n'.format(exptype, getPercentile([exp.bitsTruncated for exp in expStats], 95.0)))
+    avstatsFile.write('{}95PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsIndices for exp in expStats], 95.0)))
+    
+    avstatsFile.write('{}16PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsExp for exp in expStats], 16.0)))
+    avstatsFile.write('{}16PerTruncated {:0.1f}\n'.format(exptype, getPercentile([exp.bitsTruncated for exp in expStats], 16.0)))
+    avstatsFile.write('{}16PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsIndices for exp in expStats], 16.0)))
+    
+    avstatsFile.write('{}84PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsExp for exp in expStats], 84.0)))
+    avstatsFile.write('{}84PerTruncated {:0.1f}\n'.format(exptype, getPercentile([exp.bitsTruncated for exp in expStats], 84.0)))
+    avstatsFile.write('{}84PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsIndices for exp in expStats], 84.0)))
+    
+    avstatsFile.write('{}2p5PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsExp for exp in expStats], 2.5)))
+    avstatsFile.write('{}2p5PerTruncated {:0.1f}\n'.format(exptype, getPercentile([exp.bitsTruncated for exp in expStats], 2.5)))
+    avstatsFile.write('{}2p5PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsIndices for exp in expStats], 2.5)))
+    
+    avstatsFile.write('{}97p5PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsExp for exp in expStats], 97.5)))
+    avstatsFile.write('{}97p5PerTruncated {:0.1f}\n'.format(exptype, getPercentile([exp.bitsTruncated for exp in expStats], 97.5)))
+    avstatsFile.write('{}97p5PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsIndices for exp in expStats], 97.5)))
     
     avstatsFile.close()
 
@@ -114,9 +141,9 @@ def collectRawData(exp, pathResults):
                     if "timeout" in s:
                         totalTimeout += 1
                         timeout = True
-                    if "numRotations" in s:
+                    if not timeout and "numRotations" in s:
                         exp.numRotations = int(s.split()[1])
-                    if "rotProfileCombined_" in s:
+                    if not timeout and "rotProfileCombined_" in s:
                         prof = s.split()
                         profNum = []
                         for x in range(1,len(prof)):
@@ -151,250 +178,127 @@ def getAverages(expName):
                 d[ssplit[0]] = ssplit[1:]
 
 
-# # create latex tables
-# def createLatex():
-#     # instance info
-#     latexpaper = dirName + "/" + "latex_table_instance_info.txt"
-#     latexPaperFile = open(latexpaper, 'w')
-#     latexPaperFile.write('\\begin{table}[] \centerline{')
-#     latexPaperFile.write('\\begin{tabular}{ p{1.5cm} | p{1.5cm} p{1.5cm} p{1.5cm} p{2.5cm} }') 
-#     latexPaperFile.write('\hline\hline ')
-#     latexPaperFile.write('Case & $N_I$ & Timeout & $n$ & time (ms) \\\\ \n')
-#     latexPaperFile.write('\hline ')
-
-#     for i in xrange(0, len(expTypeNames)):
-#         exp = expTypeNames[i]
-#         latexPaperFile.write('{} & ${}$ & ${}$ & ${}$ & ${}$ \\\\ \n '.format(\
-#             exp,  d[exp+'numInstances'][0], d[exp+'numTimeout'][0], d[exp+'numMenOrWomen'][0], d[exp+'AvD_Total'][0] ))
-
-#     # finishing the latex results file
-#     latexPaperFile.write('\hline\hline \end{tabular}} \caption{General instance information.} \label{} \end{table} ')
-#     latexPaperFile.close 
-
-
-
-#     # # table 1 - basic stats
-#     latexpaper = dirName + "/" + "latex_table_generalStats.txt"
-#     latexPaperFile = open(latexpaper, 'w')
-#     latexPaperFile.write('\\begin{table}[] \centerline{')
-#     latexPaperFile.write('\\begin{tabular}{ p{1.5cm} | p{1.5cm} p{1.5cm} p{1.5cm} p{1.5cm} p{1.5cm} p{1.5cm} p{1.5cm} p{1.5cm} }') 
-#     latexPaperFile.write('\hline\hline ')
-#     latexPaperFile.write('Case & $|\mathcal{R}|$ & $|\mathcal{M}|$ & $\min(e)$ & $\max(e)$ & av$(e)$ & $\min(e_d)$ & $\max(e_d)$ & av$(e_d)$ \\\\ \n')
-#     latexPaperFile.write('\hline ')
-
-#     for i in xrange(0, len(expTypeNames)):
-#         exp = expTypeNames[i]
-#         latexPaperFile.write('{} & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ \\\\ \n '.format(\
-#             exp, d[exp+'avNumRotations'][0], d[exp+'avNumStableMatchings'][0], \
-#             # d[exp+'minDegree'][0], d[exp+'maxDegree'][0], d[exp+'avDegree'][0], \
-#             d[exp+'minEgalCost'][0], d[exp+'maxEgalCost'][0], d[exp+'avEgalCost'][0], \
-#             d[exp+'minSeCost'][0], d[exp+'maxSeCost'][0], d[exp+'avSeCost'][0]))
-
-#     # finishing the latex results file
-#     latexPaperFile.write('\hline\hline \end{tabular}} \caption{General stats results.} \label{} \end{table} ')
-#     latexPaperFile.close 
-
-
-#     # table 2 - RM info
-#     latexpaper = dirName + "/" + "latex_table_RM.txt"
-#     latexPaperFile = open(latexpaper, 'w')
-#     latexPaperFile.write('\\begin{table}[] \centerline{')
-#     latexPaperFile.write('\\begin{tabular}{ p{1.1cm} | p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.1cm} }') 
-#     latexPaperFile.write('\hline\hline ')
-#     latexPaperFile.write('Case & $\min(f)$ & $\max(f)$ & av$(f)$ & $\min(l_{10})$ & $\max(l_{10})$ & av$(l_{10})$ & $\min(d)$ & $\max(d)$ & av$(d)$ & $\min(e)$ & $\max(e)$ & av$(e)$ & $\min(e_d)$ & $\max(e_d)$ & av$(e_d)$ \\\\ \n')
-#     latexPaperFile.write('\hline ')
-
-#     for i in xrange(0, len(expTypeNames)):
-#         exp = expTypeNames[i]
-#         profile = ' '.join(str(e) for e in d[exp+'avRMprofile'][0:])
-#         latexPaperFile.write('{} & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ \\\\ \n '.format(\
-#             exp, \
-#             d[exp+'minRMfirstChoices'][0], d[exp+'maxRMfirstChoices'][0], d[exp+'avRMfirstChoices'][0], \
-#             d[exp+'minRMlast10pc'][0], d[exp+'maxRMlast10pc'][0], d[exp+'avRMlast10pc'][0], \
-#             d[exp+'minRMdegree'][0], d[exp+'maxRMdegree'][0], d[exp+'avRMdegree'][0], \
-#             d[exp+'minRMegalCost'][0], d[exp+'maxRMegalCost'][0], d[exp+'avRMegalCost'][0], \
-#             d[exp+'minRMseCost'][0], d[exp+'maxRMseCost'][0], d[exp+'avRMseCost'][0]))
-
-#     # finishing the latex results file
-#     latexPaperFile.write('\hline\hline \end{tabular}} \caption{Rank-maximal results.} \label{} \end{table} ')
-#     latexPaperFile.close 
-
-
-#     # # table 3 - GEN info
-#     latexpaper = dirName + "/" + "latex_table_GEN.txt"
-#     latexPaperFile = open(latexpaper, 'w')
-#     latexPaperFile.write('\\begin{table}[] \centerline{')
-#     latexPaperFile.write('\\begin{tabular}{ p{1.1cm} | p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.1cm} }') 
-#     latexPaperFile.write('\hline\hline ')
-#     latexPaperFile.write('Case & $\min(f)$ & $\max(f)$ & av$(f)$ & $\min(l_{50})$ & $\max(l_{50})$ & av$(l_{50})$ & $\min(d)$ & $\max(d)$ & av$(d)$ & $\min(e)$ & $\max(e)$ & av$(e)$ & $\min(e_d)$ & $\max(e_d)$ & av$(e_d)$ \\\\ \n')
-#     latexPaperFile.write('\hline ')
-
-#     for i in xrange(0, len(expTypeNames)):
-#         exp = expTypeNames[i]
-#         profile = ' '.join(str(e) for e in d[exp+'avGENprofile'][0:])
-#         latexPaperFile.write('{} & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ \\\\ \n '.format(\
-#             exp, \
-#             d[exp+'minGENfirstChoices'][0], d[exp+'maxGENfirstChoices'][0], d[exp+'avGENfirstChoices'][0], \
-#             d[exp+'minGENlast50pc'][0], d[exp+'maxGENlast50pc'][0], d[exp+'avGENlast50pc'][0], \
-#             d[exp+'minGENdegree'][0], d[exp+'maxGENdegree'][0], d[exp+'avGENdegree'][0], \
-#             d[exp+'minGENegalCost'][0], d[exp+'maxGENegalCost'][0], d[exp+'avGENegalCost'][0], \
-#             d[exp+'minGENseCost'][0], d[exp+'maxGENseCost'][0], d[exp+'avGENseCost'][0]))
-
-#     # finishing the latex results file
-#     latexPaperFile.write('\hline\hline \end{tabular}} \caption{Generous results.} \label{} \end{table} ')
-#     latexPaperFile.close 
-
-
-#     # # table 4 - GM info
-#     latexpaper = dirName + "/" + "latex_table_GM.txt"
-#     latexPaperFile = open(latexpaper, 'w')
-#     latexPaperFile.write('\\begin{table}[] \centerline{')
-#     latexPaperFile.write('\\begin{tabular}{ p{1.1cm} | p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.1cm} }') 
-#     latexPaperFile.write('\hline\hline ')
-#     latexPaperFile.write('Case & $\min(f)$ & $\max(f)$ & av$(f)$ & $\min(l_{20})$ & $\max(l_{20})$ & av$(l_{20})$ & $\min(d)$ & $\max(d)$ & av$(d)$ & $\min(e)$ & $\max(e)$ & av$(e)$ & $\min(e_d)$ & $\max(e_d)$ & av$(e_d)$ \\\\ \n')
-#     latexPaperFile.write('\hline ')
-
-#     for i in xrange(0, len(expTypeNames)):
-#         exp = expTypeNames[i]
-#         profile = ' '.join(str(e) for e in d[exp+'avGMprofile'][0:])
-#         latexPaperFile.write('{} & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ \\\\ \n '.format(\
-#             exp, \
-#             d[exp+'minGMfirstChoices'][0], d[exp+'maxGMfirstChoices'][0], d[exp+'avGMfirstChoices'][0], \
-#             d[exp+'minGMlast20pc'][0], d[exp+'maxGMlast20pc'][0], d[exp+'avGMlast20pc'][0], \
-#             d[exp+'minGMdegree'][0], d[exp+'maxGMdegree'][0], d[exp+'avGMdegree'][0], \
-#             d[exp+'minGMegalCost'][0], d[exp+'maxGMegalCost'][0], d[exp+'avGMegalCost'][0], \
-#             d[exp+'minGMseCost'][0], d[exp+'maxGMseCost'][0], d[exp+'avGMseCost'][0]))
-
-#     # finishing the latex results file
-#     latexPaperFile.write('\hline\hline \end{tabular}} \caption{Median results.} \label{} \end{table} ')
-#     latexPaperFile.close 
-
 
 # matplotlib plots
 def createPlot():
     # collect the data
     avBitsExp = []
-    avBitsTruncated = []
+    z5PerBitsExp = []
+    z95PerBitsExp = []
+    z16PerBitsExp = []
+    z84PerBitsExp = []
+    z2p5PerBitsExp = []
+    z97p5PerBitsExp = []
     avBitsIndices = []
-    n = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
-    avBitsInstanceFile = []
-    for x in range(18):
-        avBitsInstanceFile.append(np.nan)
+    z5PerBitsIndices = []
+    z95PerBitsIndices = []
+    z16PerBitsIndices = []
+    z84PerBitsIndices = []
+    z2p5PerBitsIndices = []
+    z97p5PerBitsIndices = []
+    n = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000]
+
     
     for exp in expTypeNames:
-        avBitsExp.append(float(d[exp+'avBitsExp'][0]))
-        avBitsTruncated.append(float(d[exp+'avBitsTruncated'][0]))
-        avBitsIndices.append(float(d[exp+'avBitsIndices'][0]))
-    for x in range(9):
-        avBitsExp.append(np.nan)
-        avBitsTruncated.append(np.nan)
-        avBitsIndices.append(np.nan)
-        n.append(1000 + ((x+1) * 1000))
+        avBitsExp.append(float(d[exp+'medianBitsExp'][0]))
+        z5PerBitsExp.append(float(d[exp+'5PerBitsExp'][0]))
+        z95PerBitsExp.append(float(d[exp+'95PerBitsExp'][0]))
+        z16PerBitsExp.append(float(d[exp+'16PerBitsExp'][0]))
+        z84PerBitsExp.append(float(d[exp+'84PerBitsExp'][0]))
+        z2p5PerBitsExp.append(float(d[exp+'2p5PerBitsExp'][0]))
+        z97p5PerBitsExp.append(float(d[exp+'97p5PerBitsExp'][0]))
 
-    avBitsPreferenceLists = []
-    for x in n:
-        # nums up to n
-        eachPrefElemBits = math.ceil(math.log(x, 2))
-        numPrefs = 2 * x * x
-        avBitsPreferenceLists.append(eachPrefElemBits * numPrefs)
+        # avBitsTruncated.append(float(d[exp+'avBitsTruncated'][0]))
+        avBitsIndices.append(float(d[exp+'medianBitsIndices'][0]))
+        z5PerBitsIndices.append(float(d[exp+'5PerBitsIndices'][0]))
+        z95PerBitsIndices.append(float(d[exp+'95PerBitsIndices'][0]))
+        z16PerBitsIndices.append(float(d[exp+'16PerBitsIndices'][0]))
+        z84PerBitsIndices.append(float(d[exp+'84PerBitsIndices'][0]))
+        z2p5PerBitsIndices.append(float(d[exp+'2p5PerBitsIndices'][0]))
+        z97p5PerBitsIndices.append(float(d[exp+'97p5PerBitsIndices'][0]))
+        
 
-
-    print(avBitsPreferenceLists)
-    avBitsInstanceFile = avBitsInstanceFile + [65431142.4, 298634444.8, 699609907.2, 1268357529.6, 2004877312, 2909169254.4, 3981233356.8, 5221069619.2, 6628678041.6, 8204058624]
-
-
-    print(n[-1])
+    # converting to np arrays
     n = np.array(n)
     avBitsExp = np.array(avBitsExp)
-    avBitsTruncated = np.array(avBitsTruncated)
     avBitsIndices = np.array(avBitsIndices)
-    # avBitsExp = np.log(avBitsExp)
-    # avBitsTruncated = np.log(avBitsTruncated)
-    # avBitsIndices = np.log(avBitsIndices)
-    # n = np.log(n)
-
-
-
     avBitsExp[ avBitsExp==-1.0 ] = np.nan
-    avBitsTruncated[ avBitsTruncated==-1.0 ] = np.nan
     avBitsIndices[ avBitsIndices==-1.0 ] = np.nan
 
-    print(avBitsExp, avBitsTruncated, avBitsIndices)
+    # datapoints that are not involved in the curve calc (NCD - Non Curve Data)
+    nNCD = np.concatenate((n[:9],n[19:]))
+    avBitsExpNCD = np.concatenate((avBitsExp[:9],avBitsExp[19:]))
+    avBitsIndicesNCD = np.concatenate((avBitsIndices[:9],avBitsIndices[19:]))
 
+    # datapoints involved in creating the curves
+    nCurveData = n[9:19]
+    avBitsExpCurveData = avBitsExp[9:19]
+    z5PerBitsExpCurveData = z5PerBitsExp[9:19]
+    z95PerBitsExpCurveData = z95PerBitsExp[9:19]
+    avBitsIndicesCurveData = avBitsIndices[9:19]
+    z5PerBitsIndicesCurveData = z5PerBitsIndices[9:19]
+    z95PerBitsIndicesCurveData = z95PerBitsIndices[9:19]
+
+    # curve function
+    newx = np.logspace(0, 5, 250)
+    def func(x, a, b, c):
+        return a + b*x + c*x*x
+
+    poptExpAv,_ = curve_fit(func, np.log(nCurveData), np.log(avBitsExpCurveData))
+    poptExp5,_ = curve_fit(func, np.log(nCurveData), np.log(z5PerBitsExpCurveData))
+    poptExp95,_ = curve_fit(func, np.log(nCurveData), np.log(z95PerBitsExpCurveData))
+    poptIndAv,_ = curve_fit(func, np.log(nCurveData), np.log(avBitsIndicesCurveData))
+    poptInd5,_ = curve_fit(func, np.log(nCurveData), np.log(z5PerBitsIndicesCurveData))
+    poptInd95,_ = curve_fit(func, np.log(nCurveData), np.log(z95PerBitsIndicesCurveData))
+    
+    print(poptExpAv)
+    print(poptIndAv)
+
+    # plotting
     plt.figure()
     plt.figure(facecolor='w', edgecolor='k', figsize=(8, 5))
     plt.xlabel("$n$")
     plt.ylabel("bits required")
-    # plt.xlabel("$log(n)$")
-    # plt.ylabel("log(bits required)")
 
-    plt.plot(n, avBitsExp, 'o', color='black', label="exponential")
-    idx = np.isfinite(n) & np.isfinite(avBitsExp)
-    coefs = poly.polyfit(n[idx], avBitsExp[idx], 2)
-    ffit = poly.polyval(n, coefs)
-    plt.plot(n, ffit, '-', color='black')
+    expColor = 'orangered'
+    plt.plot(nCurveData, avBitsExpCurveData, 'o', color=expColor, label="exponential representation")
+    plt.plot(nNCD, avBitsExpNCD, 'o', color=expColor, fillstyle='none', label="exponential representation (not used to calculate curve)")
+    plt.plot(newx, np.exp(func(np.log(newx), poptExpAv[0], poptExpAv[1], poptExpAv[2])), '-', color=expColor)
+    plt.fill_between(newx, np.exp(func(np.log(newx), poptExp5[0], poptExp5[1], poptExp5[2])), np.exp(func(np.log(newx), poptExp95[0], poptExp95[1], poptExp95[2])), color=expColor, alpha=.5)
 
-    plt.plot(n, avBitsTruncated, 'o', color='blue', label="truncated")
-    idx = np.isfinite(n) & np.isfinite(avBitsTruncated)
-    coefs = poly.polyfit(n[idx], avBitsTruncated[idx], 2)
-    ffit = poly.polyval(n, coefs)
-    plt.plot(n, ffit, '-', color='blue')
-
-    plt.plot(n, avBitsIndices, 'o', color='red', label="indices")
-    idx = np.isfinite(n) & np.isfinite(avBitsIndices)
-    coefs = poly.polyfit(n[idx], avBitsIndices[idx], 2)
-    ffit = poly.polyval(n, coefs)
-    plt.plot(n, ffit, '-', color='red')
-
-    # plt.plot(n, avBitsInstanceFile, 'o', color='purple', label="text file")
-    # idx = np.isfinite(avBitsInstanceFile)
-    # coefs = poly.polyfit(n[idx], avBitsIndices[idx], 2)
-    # ffit = poly.polyval(n, coefs)
-    # plt.plot(n, ffit, '-', color='purple')
-
-    # plt.plot(n, avBitsPreferenceLists, 'o', color='orange', label="preference lists in memory")
-    # idx = np.isfinite(avBitsIndices)
-    # coefs = poly.polyfit(n, avBitsPreferenceLists, 2)
-    # ffit = poly.polyval(n, coefs)
-    # plt.plot(n, ffit, '-', color='orange')
+    indColor = 'seagreen'
+    plt.plot(nCurveData, avBitsIndicesCurveData, 'o', color=indColor, label="compressed representation")
+    plt.plot(nNCD, avBitsIndicesNCD, 'o', color=indColor, fillstyle='none', label="compressed representation (not used to calculate curve)")
+    plt.plot(newx, np.exp(func(np.log(newx), poptIndAv[0], poptIndAv[1], poptIndAv[2])), '-', color=indColor)
+    plt.fill_between(newx, np.exp(func(np.log(newx), poptInd5[0], poptInd5[1], poptInd5[2])), np.exp(func(np.log(newx), poptInd95[0], poptInd95[1], poptInd95[2])), color=indColor, alpha=.5)
 
 
-    plt.legend()
-
-    ax = plt.subplot()
+    # horizontal lines
     gb = 8589934592
     mb100 = 838860800
     mb10 = 83886080
     mb1 = 8388608
-    ax.axhline(y=mb1, xmin=0.0, xmax=1.0, color='green')
-    ax.axhline(y=mb10, xmin=0.0, xmax=1.0, color='green')
-    # ax.axhline(y=mb100, xmin=0.0, xmax=1.0, color='green')
-    # ax.axhline(y=gb, xmin=0.0, xmax=1.0, color='green')
-    # ax.axhline(y=math.log(mb1), xmin=0.0, xmax=1.0, color='green')
-    # ax.axhline(y=math.log(mb10), xmin=0.0, xmax=1.0, color='green')
-    # ax.axhline(y=math.log(mb100), xmin=0.0, xmax=1.0, color='green')
-    # ax.axhline(y=math.log(gb), xmin=0.0, xmax=1.0, color='green')
+    ax = plt.subplot()
+    ax.axhline(y=mb1, xmin=0.0, xmax=1.0, color='gray', linestyle='-', linewidth=.5)
+    ax.axhline(y=mb10, xmin=0.0, xmax=1.0, color='gray', linestyle='-', linewidth=.5)
+    ax.axhline(y=mb100, xmin=0.0, xmax=1.0, color='gray', linestyle='-', linewidth=.5)
+    ax.axhline(y=gb, xmin=0.0, xmax=1.0, color='gray', linestyle='-', linewidth=.5)
+    ax.annotate('1MB', xy=(1.5, mb1+1000000), xytext=(1.5, mb1+1000000), color='gray')
+    ax.annotate('10MB', xy=(1.5, mb10+10000000), xytext=(1.5, mb10+10000000), color='gray')
+    ax.annotate('100MB', xy=(1.5, mb100+100000000), xytext=(1.5, mb100+100000000), color='gray')
+    ax.annotate('1GB', xy=(1.5, gb+1000000000), xytext=(1.5, gb+1000000000), color='gray')
 
 
+    # general plot info
+    plt.legend()
+    ax = plt.subplot()
+    ax.spines["right"].set_visible(False)    
+    ax.spines["top"].set_visible(False) 
+    ax.set_xlim(1, 100000)
+    plt.xscale('log')
+    plt.yscale('log')
     plt.show()
-
-    # # create the plot
-    # plt.figure()
-    # plt.figure(facecolor='w', edgecolor='k', figsize=(8, 5))
-    # plt.xlabel("$n$ $\ln$ $n$")
-    # plt.ylabel("Average number of stable matchings $|\mathcal{M}|$")
-    # plt.xlim(0,7300)
-    # plt.ylim(0,1190)
-    # ax = plt.subplot(111)
-    # ax.spines["right"].set_visible(False)    
-    # ax.spines["top"].set_visible(False) 
-    # plt.plot(nlogn, avstable, 'o', linestyle='-', markersize=4)
-    # for y in range(0, 1190, 200):    
-    #     plt.plot(range(0, 7300), [y] * len(range(0, 7300)), "--", lw=0.5, color="black", alpha=0.3) 
-    # for x in range(0, 7300, 1000):    
-    #     plt.plot([x] * len(range(0, 1190)), range(0, 1190), "--", lw=0.5, color="black", alpha=0.3)
-    # plt.tick_params(axis="both", which="both", bottom="off", top="off", labelbottom="on", left="off", right="off", labelleft="on") 
-    # plt.savefig("./stats/tempStatsResults/nlogn.pdf")
+    plt.savefig("./stats/motivation/spaceComparison.pdf")
 
 
 # gets the average of an array or returns -1 if array is 0 in length
@@ -403,6 +307,21 @@ def getAverage(array):
         return -1
     else:
         return np.mean(array, dtype=np.float64)
+
+
+# gets the median of an array or returns -1 if array is 0 in length
+def getMedian(array):
+    if len(array) == 0:
+        return -1
+    else:
+        return np.median(array)
+
+# gets a given percentile of an array or returns -1 if array is 0 in length
+def getPercentile(array, percentile):
+    if len(array) == 0:
+        return -1
+    else:
+        return np.percentile(array, percentile)
 
 
 # gets the minimum and maximum profile degree of an array or returns -1 if array is 0 in length
