@@ -10,6 +10,8 @@ Two-sided profile-based optimality in the stable marriage problem
 4) interpreting results files
 5) running multiple instances - preparation
 6) running multiple instances
+7) motivation experiments
+8) versions
 
 
 ******************************
@@ -127,6 +129,34 @@ If you are on linux, open the "runExperiments.sh" file and change the timeout co
 Notes
 * There are several variables that may be changed in this script including the timeout command, timeout time, correctness timeout time, location of results, java classpath, java garbage collection options, java heap space per operation and number of jobs to run simultaneously. For more information please see the script.
 
+
+******************************
+
+# 7) motivation experiments
+
+Additional motivation experiments were added in version 1.0.2. These comprise the scripts: 
+
+* ``userOptsMotivation.txt`` specifies the additional instances to be created.
+* ``runMotivation.sh`` which runs additional instances sizes according to ``userOptsMotivation.txt`` finding and saving rotations for these given instances.
+
+Results for motivation experiments can be found in the ``stats/motivation`` directory. 
+
+Currently collection of results is disabled in the ``stats/motivation.py`` file. This is because data for the larger results (instances sizes 2000, 3000, 4000 and 5000) are not present in the ``Evaluations`` directory (they are available in the linked dataset DOI). However, results are already collected in ``stats/motivation/avstats.txt``. This allows you to perform analysis on the data without that data being present. Run the following command to perform the analysis:
+
+```
+python stats/motivation.py ./Evaluations/
+```
+
+******************************
+
+# 7) versions
+
+V1.0.2
+* added functionality to perform motivation experiments and analysis
+* README updated
+
+V1.0.1
+* README updated
 
 ******************************
 
