@@ -11,6 +11,7 @@ import matplotlib.ticker as FormatStrFormatter
 import os, os.path
 import datetime
 from statsClasses import experiment
+from scipy.optimize import curve_fit
 
 # Iterates over all results files and collates results.
 # @author Frances
@@ -513,32 +514,179 @@ def createLatex():
 # matplotlib plots
 def createPlot():
     # collect the data
+    n=[]
     nlogn=[]
     avstable=[]
+    secost=[]
+    secostRM=[]
+    secostGEN=[]
+    secostGM=[]
+    egalcost=[]
+    egalcostRM=[]
+    egalcostGEN=[]
+    egalcostGM=[]
+    avRMfirstChoices=[]
+    avGENfirstChoices=[]
+    avGMfirstChoices=[]
+    avRMdegree=[]
+    avGENdegree=[]
+    avGMdegree=[]
+
     for exp in expTypeNames:
-        n = int(exp[1:])
-        nlogn.append(n * math.log(n))
+        nelem = int(exp[1:])
+        n.append(nelem)
+        nlogn.append(nelem * math.log(nelem))
         avstable.append(float(d[exp+'avNumStableMatchings'][0]))
+        secost.append(float(d[exp+'avSeCost'][0]))
+        secostRM.append(float(d[exp+'avRMseCost'][0]))
+        secostGEN.append(float(d[exp+'avGENseCost'][0]))
+        secostGM.append(float(d[exp+'avGMseCost'][0]))
+        egalcost.append(float(d[exp+'avEgalCost'][0]))
+        egalcostRM.append(float(d[exp+'avRMegalCost'][0]))
+        egalcostGEN.append(float(d[exp+'avGENegalCost'][0]))
+        egalcostGM.append(float(d[exp+'avGMegalCost'][0]))
+        avRMfirstChoices.append(float(d[exp+'avRMfirstChoices'][0]))
+        avGENfirstChoices.append(float(d[exp+'avGENfirstChoices'][0]))
+        avGMfirstChoices.append(float(d[exp+'avGMfirstChoices'][0]))
+        avRMdegree.append(float(d[exp+'avRMdegree'][0]))
+        avGENdegree.append(float(d[exp+'avGENdegree'][0]))
+        avGMdegree.append(float(d[exp+'avGMdegree'][0]))
     nlogn = nlogn[9:]
     avstable = avstable[9:]
 
-    # create the plot
+
+    def func1D(x, a, b):
+        return a + b*x
+    def func2D(x, a, b, c):
+        return a + b*x + c*x*x
+
+    #############
+    # nlogn graph
     plt.figure()
-    plt.figure(facecolor='w', edgecolor='k', figsize=(8, 5))
-    plt.xlabel("$n$ $\ln$ $n$")
+    plt.figure(facecolor='w', edgecolor='k', figsize=(7, 5))
+
+    newx = np.linspace(460, 6900, 250)
+    avStableCV,_ = curve_fit(func1D, nlogn, avstable)
+    plt.plot(nlogn, avstable, 'o', color='black')
+    plt.plot(newx, func1D(newx, avStableCV[0], avStableCV[1]), '-', color='black')
+    
+    plt.xlabel("$n$ $\log$ $n$")
     plt.ylabel("Average number of stable matchings $|\mathcal{M}|$")
-    plt.xlim(0,7300)
-    plt.ylim(0,1190)
-    ax = plt.subplot(111)
+    ax = plt.subplot()
     ax.spines["right"].set_visible(False)    
-    ax.spines["top"].set_visible(False) 
-    plt.plot(nlogn, avstable, 'o', linestyle='-', markersize=4)
-    for y in range(0, 1190, 200):    
-        plt.plot(range(0, 7300), [y] * len(range(0, 7300)), "--", lw=0.5, color="black", alpha=0.3) 
-    for x in range(0, 7300, 1000):    
-        plt.plot([x] * len(range(0, 1190)), range(0, 1190), "--", lw=0.5, color="black", alpha=0.3)
-    plt.tick_params(axis="both", which="both", bottom="off", top="off", labelbottom="on", left="off", right="off", labelleft="on") 
-    plt.savefig("./stats/tempStatsResults/nlogn.pdf")
+    ax.spines["top"].set_visible(False)
+    plt.grid(linestyle="--")
+    plt.savefig("./stats/tempStatsResults/sm_rm_nlogn.pdf")
+
+    #############
+    # sex equal cost
+    plt.figure()
+    plt.figure(facecolor='w', edgecolor='k', figsize=(7, 5))
+    newx = np.logspace(1, 3, 250)
+    secostCV,_ = curve_fit(func1D, np.log(n), np.log(secost))
+    secostRMCV,_ = curve_fit(func1D, np.log(n), np.log(secostRM))
+    secostGENCV,_ = curve_fit(func1D, np.log(n), np.log(secostGEN))
+    secostGMCV,_ = curve_fit(func1D, np.log(n), np.log(secostGM))
+    plt.plot(n, secostRM, 'o', color='skyblue', label="rank-maximal")
+    plt.plot(n, secostGM, '*', color='orangered', label="median") 
+    plt.plot(n, secostGEN, 's', color='seagreen', label="generous")
+    plt.plot(n, secost, '^', color='gold', label="sex-equal")
+    
+    plt.plot(newx, np.exp(func1D(np.log(newx), secostRMCV[0], secostRMCV[1])), '-', color='skyblue')
+    plt.plot(newx, np.exp(func1D(np.log(newx), secostGMCV[0], secostGMCV[1])), '-', color='orangered')
+    plt.plot(newx, np.exp(func1D(np.log(newx), secostGENCV[0], secostGENCV[1])), '-', color='seagreen')
+    plt.plot(newx, np.exp(func1D(np.log(newx), secostCV[0], secostCV[1])), '-', color='gold')
+    
+    plt.legend()
+    plt.xlabel("$n$")
+    plt.ylabel("Average sex-equal cost")
+    plt.xscale('log')
+    plt.yscale('log')
+    ax = plt.subplot()
+    ax.spines["right"].set_visible(False)    
+    ax.spines["top"].set_visible(False)
+    plt.grid(linestyle="--")
+    plt.savefig("./stats/tempStatsResults/sm_rm_seCost.pdf")
+
+    #############
+    # egalitarian cost
+    plt.figure()
+    plt.figure(facecolor='w', edgecolor='k', figsize=(7, 5))
+    newx = np.linspace(10, 1000, 250)
+    egalcostCV,_ = curve_fit(func2D, n, egalcost)
+    egalcostRMCV,_ = curve_fit(func2D, n, egalcostRM)
+    egalcostGENCV,_ = curve_fit(func2D, n, egalcostGEN)
+    egalcostGMCV,_ = curve_fit(func2D, n, egalcostGM)
+    plt.plot(n, egalcostRM, 'o', color='skyblue', label="rank-maximal")
+    plt.plot(n, egalcostGM, '*', color='orangered', label="median")
+    plt.plot(n, egalcostGEN, 's', color='seagreen', label="generous")
+    plt.plot(n, egalcost, '^', color='gold', label="egalitarian")
+    
+    plt.plot(newx, func2D(newx, egalcostRMCV[0], egalcostRMCV[1], egalcostRMCV[2]), '-', color='skyblue')
+    plt.plot(newx, func2D(newx, egalcostGMCV[0], egalcostGMCV[1], egalcostGMCV[2]), '-', color='orangered')
+    plt.plot(newx, func2D(newx, egalcostGENCV[0], egalcostGENCV[1], egalcostGENCV[2]), '-', color='seagreen')
+    plt.plot(newx, func2D(newx, egalcostCV[0], egalcostCV[1], egalcostCV[2]), '-', color='gold')
+
+    plt.legend()
+    plt.xlabel("$n$")
+    plt.ylabel("Average egalitarian cost")
+    ax = plt.subplot()
+    ax.spines["right"].set_visible(False)    
+    ax.spines["top"].set_visible(False)
+    plt.grid(linestyle="--")
+    plt.savefig("./stats/tempStatsResults/sm_rm_egalCost.pdf")
+
+    #############
+    # num 1st choices
+    plt.figure()
+    plt.figure(facecolor='w', edgecolor='k', figsize=(7, 5))
+    newx = np.linspace(10, 1000, 250)
+    avRMfirstChoicesCV,_ = curve_fit(func2D, n, avRMfirstChoices)
+    avGENfirstChoicesCV,_ = curve_fit(func2D, n, avGENfirstChoices)
+    avGMfirstChoicesCV,_ = curve_fit(func2D, n, avGMfirstChoices)
+    plt.plot(n, avRMfirstChoices, 'o', color='skyblue', label="rank-maximal")
+    plt.plot(n, avGMfirstChoices, '*', color='orangered', label="median")
+    plt.plot(n, avGENfirstChoices, 's', color='seagreen', label="generous")
+    
+    plt.plot(newx, func2D(newx, avRMfirstChoicesCV[0], avRMfirstChoicesCV[1], avRMfirstChoicesCV[2]), '-', color='skyblue')
+    plt.plot(newx, func2D(newx, avGMfirstChoicesCV[0], avGMfirstChoicesCV[1], avGMfirstChoicesCV[2]), '-', color='orangered')
+    plt.plot(newx, func2D(newx, avGENfirstChoicesCV[0], avGENfirstChoicesCV[1], avGENfirstChoicesCV[2]), '-', color='seagreen')
+
+    plt.legend()
+    plt.xlabel("$n$")
+    plt.ylabel("Average number of first choices")
+    ax = plt.subplot()
+    ax.spines["right"].set_visible(False)    
+    ax.spines["top"].set_visible(False)
+    plt.grid(linestyle="--")
+    plt.savefig("./stats/tempStatsResults/sm_rm_firstChoices.pdf")
+
+
+    #############
+    # av degree
+    plt.figure()
+    plt.figure(facecolor='w', edgecolor='k', figsize=(7, 5))
+    newx = np.linspace(10, 1000, 250)
+    avRMdegreeCV,_ = curve_fit(func2D, n, avRMdegree)
+    avGENdegreeCV,_ = curve_fit(func2D, n, avGENdegree)
+    avGMdegreeCV,_ = curve_fit(func2D, n, avGMdegree)
+    plt.plot(n, avRMdegree, 'o', color='skyblue', label="rank-maximal")
+    plt.plot(n, avGMdegree, '*', color='orangered', label="median")
+    plt.plot(n, avGENdegree, 's', color='seagreen', label="generous")
+    
+    plt.plot(newx, func2D(newx, avRMdegreeCV[0], avRMdegreeCV[1], avRMdegreeCV[2]), '-', color='skyblue')
+    plt.plot(newx, func2D(newx, avGMdegreeCV[0], avGMdegreeCV[1], avGMdegreeCV[2]), '-', color='orangered')
+    plt.plot(newx, func2D(newx, avGENdegreeCV[0], avGENdegreeCV[1], avGENdegreeCV[2]), '-', color='seagreen')
+
+    plt.legend()
+    plt.xlabel("$n$")
+    plt.ylabel("Average degree")
+    ax = plt.subplot()
+    ax.spines["right"].set_visible(False)    
+    ax.spines["top"].set_visible(False)
+    plt.grid(linestyle="--")
+    plt.savefig("./stats/tempStatsResults/sm_rm_degree.pdf")
+
 
 
 # gets the average of an array or returns -1 if array is 0 in length

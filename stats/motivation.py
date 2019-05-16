@@ -297,6 +297,7 @@ def createPlot():
     ax.set_xlim(1, 100000)
     plt.xscale('log')
     plt.yscale('log')
+    plt.grid()
     plt.show()
     plt.savefig("./stats/motivation/spaceComparison.pdf")
 
