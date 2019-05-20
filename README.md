@@ -38,11 +38,11 @@ Download / git clone the stable-SM software from Github:
 https://github.com/fmcooper/stable-SM
 
 
-Data and software version information can be found in the following paper: 
+Data and software information can be found in the following paper: 
 Two-sided profile-based optimality in the stable marriage problem
 Authors: Frances Cooper and David Manlove
-Submitted to MATCH-UP 2019
 
+The paper is located at: https://arxiv.org/abs/1905.06626
 The data is located at: https://doi.org/10.5281/zenodo.2542703
 The software is located at: https://doi.org/10.5281/zenodo.2545798
 
@@ -150,6 +150,11 @@ python stats/motivation.py ./Evaluations/
 ******************************
 
 # 7) versions
+
+V1.0.3
+* added functionality to create graphs found in associated paper
+* ``stats/tempStatsResults/avstats.txt`` file now contains stats for all data up to n = 1000
+* README updated
 
 V1.0.2
 * added functionality to perform motivation experiments and analysis
