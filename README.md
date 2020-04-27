@@ -42,9 +42,9 @@ Data and software information can be found in the following paper:
 Two-sided profile-based optimality in the stable marriage problem
 Authors: Frances Cooper and David Manlove
 
-The paper is located at: https://arxiv.org/abs/1905.06626
-The data is located at: https://doi.org/10.5281/zenodo.2542703
-The software is located at: https://doi.org/10.5281/zenodo.2545798
+* The paper is located at: https://arxiv.org/abs/1905.06626
+* The data is located at: https://doi.org/10.5281/zenodo.2542703
+* The software is located at: https://doi.org/10.5281/zenodo.2545798
 
 
 ******************************
