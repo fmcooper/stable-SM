@@ -42,7 +42,7 @@ def main():
 
     # for each experiment type
     for ind, exptype in enumerate(expTypeNames):
-        print exptype
+        print(exptype)
         postPathResultsGSNS = "/ResultsGS_notSwapped/"
         postPathResultsGSS = "/ResultsGS_Swapped/"
         postPathResults = "/Results_stable/"
@@ -398,18 +398,19 @@ def createLatex():
     latexpaper = dirName + "/" + "latex_table_instance_info.txt"
     latexPaperFile = open(latexpaper, 'w')
     latexPaperFile.write('\\begin{table}[] \centerline{')
-    latexPaperFile.write('\\begin{tabular}{ p{1.5cm} | p{1.5cm} p{1.5cm} p{1.5cm} p{2.5cm} }') 
+    latexPaperFile.write('\\begin{tabular}{ R{1.5cm} | R{1.5cm} R{1.5cm} R{1.5cm} R{1.5cm} R{2cm} }') 
     latexPaperFile.write('\hline\hline ')
-    latexPaperFile.write('Case & $N_I$ & Timeout & $n$ & time (ms) \\\\ \n')
+    latexPaperFile.write('Case & $n$ & $|\mathcal{R}|_{av}$ & $|\mathcal{M}|_{av}$ & Timeout & Time (ms) \\\\ \n')
     latexPaperFile.write('\hline ')
 
-    for i in xrange(0, len(expTypeNames)):
+    for i in range(0, len(expTypeNames)):
         exp = expTypeNames[i]
-        latexPaperFile.write('{} & ${}$ & ${}$ & ${}$ & ${}$ \\\\ \n '.format(\
-            exp,  d[exp+'numInstances'][0], d[exp+'numTimeout'][0], d[exp+'numMenOrWomen'][0], d[exp+'AvD_Total'][0] ))
+        latexPaperFile.write('{} & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ \\\\ \n '.format(\
+            exp, d[exp+'numMenOrWomen'][0], d[exp+'avNumRotations'][0], d[exp+'avNumStableMatchings'][0], \
+            d[exp+'numTimeout'][0], d[exp+'AvD_Total'][0] ))
 
     # finishing the latex results file
-    latexPaperFile.write('\hline\hline \end{tabular}} \caption{General instance information.} \label{} \end{table} ')
+    latexPaperFile.write('\hline\hline \end{tabular}} \caption{General instance information.} \label{sm_rm_res_instanceParams} \end{table} ')
     latexPaperFile.close 
 
 
@@ -418,21 +419,22 @@ def createLatex():
     latexpaper = dirName + "/" + "latex_table_generalStats.txt"
     latexPaperFile = open(latexpaper, 'w')
     latexPaperFile.write('\\begin{table}[] \centerline{')
-    latexPaperFile.write('\\begin{tabular}{ p{1.5cm} | p{1.5cm} p{1.5cm} p{1.5cm} p{1.5cm} p{1.5cm} p{1.5cm} p{1.5cm} p{1.5cm} }') 
+    latexPaperFile.write('\\begin{tabular}{ R{1.5cm} | R{1.5cm} R{1.5cm} R{1.5cm} R{2cm} R{1.5cm} R{1.5cm} }') 
     latexPaperFile.write('\hline\hline ')
-    latexPaperFile.write('Case & $|\mathcal{R}|$ & $|\mathcal{M}|$ & $\min(e)$ & $\max(e)$ & av$(e)$ & $\min(e_d)$ & $\max(e_d)$ & av$(e_d)$ \\\\ \n')
+    latexPaperFile.write('& \multicolumn{3}{c}{Cost} & \multicolumn{3}{c}{Sex-equal score} \\\\ \n')
+    latexPaperFile.write('Case & $\min$ & $\max$ & av & $\min$ & $\max$ & av \\\\ \n')
     latexPaperFile.write('\hline ')
 
-    for i in xrange(0, len(expTypeNames)):
+    for i in range(0, len(expTypeNames)):
         exp = expTypeNames[i]
-        latexPaperFile.write('{} & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ \\\\ \n '.format(\
-            exp, d[exp+'avNumRotations'][0], d[exp+'avNumStableMatchings'][0], \
+        latexPaperFile.write('{} & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ \\\\ \n '.format(\
+            exp, \
             # d[exp+'minDegree'][0], d[exp+'maxDegree'][0], d[exp+'avDegree'][0], \
             d[exp+'minEgalCost'][0], d[exp+'maxEgalCost'][0], d[exp+'avEgalCost'][0], \
             d[exp+'minSeCost'][0], d[exp+'maxSeCost'][0], d[exp+'avSeCost'][0]))
 
     # finishing the latex results file
-    latexPaperFile.write('\hline\hline \end{tabular}} \caption{General stats results.} \label{} \end{table} ')
+    latexPaperFile.write('\hline\hline \end{tabular}} \caption{Optimal cost and sex-equal score results.} \label{sm_rm_res_generalStats} \end{table} ')
     latexPaperFile.close 
 
 
@@ -440,12 +442,13 @@ def createLatex():
     latexpaper = dirName + "/" + "latex_table_RM.txt"
     latexPaperFile = open(latexpaper, 'w')
     latexPaperFile.write('\\begin{table}[] \centerline{')
-    latexPaperFile.write('\\begin{tabular}{ p{1.1cm} | p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.1cm} }') 
+    latexPaperFile.write('\\begin{tabular}{ R{1.2cm} | R{1cm} R{1cm} R{1cm} R{1.5cm} R{1cm} R{1cm} R{1.5cm} R{1cm} R{1cm} R{1.8cm} R{1.5cm} R{1.6cm} R{1.8cm} R{1.5cm} R{1.6cm} }') 
     latexPaperFile.write('\hline\hline ')
-    latexPaperFile.write('Case & $\min(f)$ & $\max(f)$ & av$(f)$ & $\min(l_{10})$ & $\max(l_{10})$ & av$(l_{10})$ & $\min(d)$ & $\max(d)$ & av$(d)$ & $\min(e)$ & $\max(e)$ & av$(e)$ & $\min(e_d)$ & $\max(e_d)$ & av$(e_d)$ \\\\ \n')
+    latexPaperFile.write('& \multicolumn{3}{c}{$f$} & \multicolumn{3}{c}{$l_{10}$} & \multicolumn{3}{c}{Degree} & \multicolumn{3}{c}{Cost} & \multicolumn{3}{c}{Sex-equal score} \\\\ \n')
+    latexPaperFile.write('Case & $\min$ & $\max$ & av & $\min$ & $\max$ & av & $\min$ & $\max$ & av & $\min$ & $\max$ & av & $\min$ & $\max$ & av \\\\ \n')
     latexPaperFile.write('\hline ')
 
-    for i in xrange(0, len(expTypeNames)):
+    for i in range(0, len(expTypeNames)):
         exp = expTypeNames[i]
         profile = ' '.join(str(e) for e in d[exp+'avRMprofile'][0:])
         latexPaperFile.write('{} & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ \\\\ \n '.format(\
@@ -457,7 +460,7 @@ def createLatex():
             d[exp+'minRMseCost'][0], d[exp+'maxRMseCost'][0], d[exp+'avRMseCost'][0]))
 
     # finishing the latex results file
-    latexPaperFile.write('\hline\hline \end{tabular}} \caption{Rank-maximal results.} \label{} \end{table} ')
+    latexPaperFile.write('\hline\hline \end{tabular}} \caption{Rank-maximal stable matching results.} \label{sm_rm_res_RM} \end{table} ')
     latexPaperFile.close 
 
 
@@ -465,12 +468,13 @@ def createLatex():
     latexpaper = dirName + "/" + "latex_table_GEN.txt"
     latexPaperFile = open(latexpaper, 'w')
     latexPaperFile.write('\\begin{table}[] \centerline{')
-    latexPaperFile.write('\\begin{tabular}{ p{1.1cm} | p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.1cm} }') 
+    latexPaperFile.write('\\begin{tabular}{ R{1.2cm} | R{1cm} R{1cm} R{1cm} R{1.5cm} R{1cm} R{1cm} R{1.5cm} R{1cm} R{1cm} R{1.8cm} R{1.5cm} R{1.6cm} R{1.8cm} R{1.5cm} R{1.6cm} }') 
     latexPaperFile.write('\hline\hline ')
-    latexPaperFile.write('Case & $\min(f)$ & $\max(f)$ & av$(f)$ & $\min(l_{50})$ & $\max(l_{50})$ & av$(l_{50})$ & $\min(d)$ & $\max(d)$ & av$(d)$ & $\min(e)$ & $\max(e)$ & av$(e)$ & $\min(e_d)$ & $\max(e_d)$ & av$(e_d)$ \\\\ \n')
+    latexPaperFile.write('& \multicolumn{3}{c}{$f$} & \multicolumn{3}{c}{$l_{50}$} & \multicolumn{3}{c}{Degree} & \multicolumn{3}{c}{Cost} & \multicolumn{3}{c}{Sex-equal score} \\\\ \n')
+    latexPaperFile.write('Case & $\min$ & $\max$ & av & $\min$ & $\max$ & av & $\min$ & $\max$ & av & $\min$ & $\max$ & av & $\min$ & $\max$ & av \\\\ \n')
     latexPaperFile.write('\hline ')
 
-    for i in xrange(0, len(expTypeNames)):
+    for i in range(0, len(expTypeNames)):
         exp = expTypeNames[i]
         profile = ' '.join(str(e) for e in d[exp+'avGENprofile'][0:])
         latexPaperFile.write('{} & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ \\\\ \n '.format(\
@@ -482,7 +486,7 @@ def createLatex():
             d[exp+'minGENseCost'][0], d[exp+'maxGENseCost'][0], d[exp+'avGENseCost'][0]))
 
     # finishing the latex results file
-    latexPaperFile.write('\hline\hline \end{tabular}} \caption{Generous results.} \label{} \end{table} ')
+    latexPaperFile.write('\hline\hline \end{tabular}} \caption{Generous stable matching results.} \label{sm_rm_res_GEN} \end{table} ')
     latexPaperFile.close 
 
 
@@ -490,12 +494,13 @@ def createLatex():
     latexpaper = dirName + "/" + "latex_table_GM.txt"
     latexPaperFile = open(latexpaper, 'w')
     latexPaperFile.write('\\begin{table}[] \centerline{')
-    latexPaperFile.write('\\begin{tabular}{ p{1.1cm} | p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.4cm} p{1.1cm} p{1.1cm} p{1.1cm} }') 
+    latexPaperFile.write('\\begin{tabular}{ R{1.2cm} | R{1cm} R{1cm} R{1cm} R{1.5cm} R{1cm} R{1cm} R{1.5cm} R{1cm} R{1cm} R{1.8cm} R{1.5cm} R{1.6cm} R{1.8cm} R{1.5cm} R{1.6cm} }') 
     latexPaperFile.write('\hline\hline ')
-    latexPaperFile.write('Case & $\min(f)$ & $\max(f)$ & av$(f)$ & $\min(l_{20})$ & $\max(l_{20})$ & av$(l_{20})$ & $\min(d)$ & $\max(d)$ & av$(d)$ & $\min(e)$ & $\max(e)$ & av$(e)$ & $\min(e_d)$ & $\max(e_d)$ & av$(e_d)$ \\\\ \n')
+    latexPaperFile.write('& \multicolumn{3}{c}{$f$} & \multicolumn{3}{c}{$l_{20}$} & \multicolumn{3}{c}{Degree} & \multicolumn{3}{c}{Cost} & \multicolumn{3}{c}{Sex-equal score} \\\\ \n')
+    latexPaperFile.write('Case & $\min$ & $\max$ & av & $\min$ & $\max$ & av & $\min$ & $\max$ & av & $\min$ & $\max$ & av & $\min$ & $\max$ & av \\\\ \n')
     latexPaperFile.write('\hline ')
 
-    for i in xrange(0, len(expTypeNames)):
+    for i in range(0, len(expTypeNames)):
         exp = expTypeNames[i]
         profile = ' '.join(str(e) for e in d[exp+'avGMprofile'][0:])
         latexPaperFile.write('{} & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ \\\\ \n '.format(\
@@ -507,7 +512,7 @@ def createLatex():
             d[exp+'minGMseCost'][0], d[exp+'maxGMseCost'][0], d[exp+'avGMseCost'][0]))
 
     # finishing the latex results file
-    latexPaperFile.write('\hline\hline \end{tabular}} \caption{Median results.} \label{} \end{table} ')
+    latexPaperFile.write('\hline\hline \end{tabular}} \caption{Median stable matching results.} \label{sm_rm_res_GM} \end{table} ')
     latexPaperFile.close 
 
 
@@ -562,7 +567,6 @@ def createPlot():
 
     #############
     # nlogn graph
-    plt.figure()
     plt.figure(facecolor='w', edgecolor='k', figsize=(7, 5))
 
     newx = np.linspace(460, 6900, 250)
@@ -571,26 +575,26 @@ def createPlot():
     plt.plot(newx, func1D(newx, avStableCV[0], avStableCV[1]), '-', color='black')
     
     plt.xlabel("$n$ $\log$ $n$")
-    plt.ylabel("Average number of stable matchings $|\mathcal{M}|$")
+    plt.ylabel("Mean number of stable matchings $|\mathcal{M}_s|_{av}$")
     ax = plt.subplot()
-    ax.spines["right"].set_visible(False)    
-    ax.spines["top"].set_visible(False)
-    plt.grid(linestyle="--")
+    # ax.spines["right"].set_visible(False)    
+    # ax.spines["top"].set_visible(False)
+    plt.grid()
+    plt.tight_layout()
     plt.savefig("./stats/tempStatsResults/sm_rm_nlogn.pdf")
 
     #############
-    # sex equal cost
-    plt.figure()
+    # sex equal score
     plt.figure(facecolor='w', edgecolor='k', figsize=(7, 5))
     newx = np.logspace(1, 3, 250)
     secostCV,_ = curve_fit(func1D, np.log(n), np.log(secost))
     secostRMCV,_ = curve_fit(func1D, np.log(n), np.log(secostRM))
     secostGENCV,_ = curve_fit(func1D, np.log(n), np.log(secostGEN))
     secostGMCV,_ = curve_fit(func1D, np.log(n), np.log(secostGM))
-    plt.plot(n, secostRM, 'o', color='skyblue', label="rank-maximal")
-    plt.plot(n, secostGM, '*', color='orangered', label="median") 
-    plt.plot(n, secostGEN, 's', color='seagreen', label="generous")
-    plt.plot(n, secost, '^', color='gold', label="sex-equal")
+    plt.plot(n, secostRM, 'o', color='skyblue', label="Rank-maximal")
+    plt.plot(n, secostGM, '*', color='orangered', label="Median") 
+    plt.plot(n, secostGEN, 's', color='seagreen', label="Generous")
+    plt.plot(n, secost, '^', color='gold', label="Sex-equal")
     
     plt.plot(newx, np.exp(func1D(np.log(newx), secostRMCV[0], secostRMCV[1])), '-', color='skyblue')
     plt.plot(newx, np.exp(func1D(np.log(newx), secostGMCV[0], secostGMCV[1])), '-', color='orangered')
@@ -599,28 +603,28 @@ def createPlot():
     
     plt.legend()
     plt.xlabel("$n$")
-    plt.ylabel("Average sex-equal cost")
+    plt.ylabel("Mean sex-equal score")
     plt.xscale('log')
     plt.yscale('log')
     ax = plt.subplot()
-    ax.spines["right"].set_visible(False)    
-    ax.spines["top"].set_visible(False)
-    plt.grid(linestyle="--")
+    # ax.spines["right"].set_visible(False)    
+    # ax.spines["top"].set_visible(False)
+    plt.grid()
+    plt.tight_layout()
     plt.savefig("./stats/tempStatsResults/sm_rm_seCost.pdf")
 
     #############
-    # egalitarian cost
-    plt.figure()
+    # cost
     plt.figure(facecolor='w', edgecolor='k', figsize=(7, 5))
     newx = np.linspace(10, 1000, 250)
     egalcostCV,_ = curve_fit(func2D, n, egalcost)
     egalcostRMCV,_ = curve_fit(func2D, n, egalcostRM)
     egalcostGENCV,_ = curve_fit(func2D, n, egalcostGEN)
     egalcostGMCV,_ = curve_fit(func2D, n, egalcostGM)
-    plt.plot(n, egalcostRM, 'o', color='skyblue', label="rank-maximal")
-    plt.plot(n, egalcostGM, '*', color='orangered', label="median")
-    plt.plot(n, egalcostGEN, 's', color='seagreen', label="generous")
-    plt.plot(n, egalcost, '^', color='gold', label="egalitarian")
+    plt.plot(n, egalcostRM, 'o', color='skyblue', label="Rank-maximal")
+    plt.plot(n, egalcostGM, '*', color='orangered', label="Median")
+    plt.plot(n, egalcostGEN, 's', color='seagreen', label="Generous")
+    plt.plot(n, egalcost, '^', color='gold', label="Egalitarian")
     
     plt.plot(newx, func2D(newx, egalcostRMCV[0], egalcostRMCV[1], egalcostRMCV[2]), '-', color='skyblue')
     plt.plot(newx, func2D(newx, egalcostGMCV[0], egalcostGMCV[1], egalcostGMCV[2]), '-', color='orangered')
@@ -629,24 +633,24 @@ def createPlot():
 
     plt.legend()
     plt.xlabel("$n$")
-    plt.ylabel("Average egalitarian cost")
+    plt.ylabel("Mean cost")
     ax = plt.subplot()
-    ax.spines["right"].set_visible(False)    
-    ax.spines["top"].set_visible(False)
-    plt.grid(linestyle="--")
+    # ax.spines["right"].set_visible(False)    
+    # ax.spines["top"].set_visible(False)
+    plt.grid()
+    plt.tight_layout()
     plt.savefig("./stats/tempStatsResults/sm_rm_egalCost.pdf")
 
     #############
     # num 1st choices
-    plt.figure()
     plt.figure(facecolor='w', edgecolor='k', figsize=(7, 5))
     newx = np.linspace(10, 1000, 250)
     avRMfirstChoicesCV,_ = curve_fit(func2D, n, avRMfirstChoices)
     avGENfirstChoicesCV,_ = curve_fit(func2D, n, avGENfirstChoices)
     avGMfirstChoicesCV,_ = curve_fit(func2D, n, avGMfirstChoices)
-    plt.plot(n, avRMfirstChoices, 'o', color='skyblue', label="rank-maximal")
-    plt.plot(n, avGMfirstChoices, '*', color='orangered', label="median")
-    plt.plot(n, avGENfirstChoices, 's', color='seagreen', label="generous")
+    plt.plot(n, avRMfirstChoices, 'o', color='skyblue', label="Rank-maximal")
+    plt.plot(n, avGMfirstChoices, '*', color='orangered', label="Median")
+    plt.plot(n, avGENfirstChoices, 's', color='seagreen', label="Generous")
     
     plt.plot(newx, func2D(newx, avRMfirstChoicesCV[0], avRMfirstChoicesCV[1], avRMfirstChoicesCV[2]), '-', color='skyblue')
     plt.plot(newx, func2D(newx, avGMfirstChoicesCV[0], avGMfirstChoicesCV[1], avGMfirstChoicesCV[2]), '-', color='orangered')
@@ -654,25 +658,25 @@ def createPlot():
 
     plt.legend()
     plt.xlabel("$n$")
-    plt.ylabel("Average number of first choices")
+    plt.ylabel("Mean number of first choices")
     ax = plt.subplot()
-    ax.spines["right"].set_visible(False)    
-    ax.spines["top"].set_visible(False)
-    plt.grid(linestyle="--")
+    # ax.spines["right"].set_visible(False)    
+    # ax.spines["top"].set_visible(False)
+    plt.grid()
+    plt.tight_layout()
     plt.savefig("./stats/tempStatsResults/sm_rm_firstChoices.pdf")
 
 
     #############
     # av degree
-    plt.figure()
     plt.figure(facecolor='w', edgecolor='k', figsize=(7, 5))
     newx = np.linspace(10, 1000, 250)
     avRMdegreeCV,_ = curve_fit(func2D, n, avRMdegree)
     avGENdegreeCV,_ = curve_fit(func2D, n, avGENdegree)
     avGMdegreeCV,_ = curve_fit(func2D, n, avGMdegree)
-    plt.plot(n, avRMdegree, 'o', color='skyblue', label="rank-maximal")
-    plt.plot(n, avGMdegree, '*', color='orangered', label="median")
-    plt.plot(n, avGENdegree, 's', color='seagreen', label="generous")
+    plt.plot(n, avRMdegree, 'o', color='skyblue', label="Rank-maximal")
+    plt.plot(n, avGMdegree, '*', color='orangered', label="Median")
+    plt.plot(n, avGENdegree, 's', color='seagreen', label="Generous")
     
     plt.plot(newx, func2D(newx, avRMdegreeCV[0], avRMdegreeCV[1], avRMdegreeCV[2]), '-', color='skyblue')
     plt.plot(newx, func2D(newx, avGMdegreeCV[0], avGMdegreeCV[1], avGMdegreeCV[2]), '-', color='orangered')
@@ -680,11 +684,12 @@ def createPlot():
 
     plt.legend()
     plt.xlabel("$n$")
-    plt.ylabel("Average degree")
+    plt.ylabel("Mean degree")
     ax = plt.subplot()
-    ax.spines["right"].set_visible(False)    
-    ax.spines["top"].set_visible(False)
-    plt.grid(linestyle="--")
+    # ax.spines["right"].set_visible(False)    
+    # ax.spines["top"].set_visible(False)
+    plt.grid()
+    plt.tight_layout()
     plt.savefig("./stats/tempStatsResults/sm_rm_degree.pdf")
 
 

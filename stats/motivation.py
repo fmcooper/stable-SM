@@ -37,17 +37,17 @@ def main():
         os.makedirs(dirName)
 
     # # calculate results
-    # now = datetime.datetime.now()
-    # avstatsFile = open(avstats, 'w')
-    # avstatsFile.write("Stats runthrough conducted at: " + now.strftime("%Y-%m-%d %H:%M") + "\n\n")
-    # avstatsFile.close()
+    now = datetime.datetime.now()
+    avstatsFile = open(avstats, 'w')
+    avstatsFile.write("Stats runthrough conducted at: " + now.strftime("%Y-%m-%d %H:%M") + "\n\n")
+    avstatsFile.close()
 
     # for each experiment type
     for ind, exptype in enumerate(expTypeNames):
-        print exptype
+        print(exptype)
         postPathResults = "/Results_stable/"
 
-        # calculateResults(exptype, prePath, postPathResults)
+        calculateResults(exptype, prePath, postPathResults)
 
         # get averages
         getAverages(exptype)
@@ -255,20 +255,19 @@ def createPlot():
     print(poptIndAv)
 
     # plotting
-    plt.figure()
-    plt.figure(facecolor='w', edgecolor='k', figsize=(8, 5))
+    plt.figure(facecolor='w', edgecolor='k', figsize=(7, 5))
     plt.xlabel("$n$")
     plt.ylabel("bits required")
 
     expColor = 'orangered'
-    plt.plot(nCurveData, avBitsExpCurveData, 'o', color=expColor, label="exponential representation")
-    plt.plot(nNCD, avBitsExpNCD, 'o', color=expColor, fillstyle='none', label="exponential representation (not used to calculate curve)")
+    plt.plot(nCurveData, avBitsExpCurveData, 'o', color=expColor, label="Exponential representation")
+    plt.plot(nNCD, avBitsExpNCD, 'o', color=expColor, fillstyle='none', label="Exponential representation (not used to calculate curve)")
     plt.plot(newx, np.exp(func(np.log(newx), poptExpAv[0], poptExpAv[1], poptExpAv[2])), '-', color=expColor)
     plt.fill_between(newx, np.exp(func(np.log(newx), poptExp5[0], poptExp5[1], poptExp5[2])), np.exp(func(np.log(newx), poptExp95[0], poptExp95[1], poptExp95[2])), color=expColor, alpha=.5)
 
     indColor = 'seagreen'
-    plt.plot(nCurveData, avBitsIndicesCurveData, 'o', color=indColor, label="compressed representation")
-    plt.plot(nNCD, avBitsIndicesNCD, 'o', color=indColor, fillstyle='none', label="compressed representation (not used to calculate curve)")
+    plt.plot(nCurveData, avBitsIndicesCurveData, 'o', color=indColor, label="Compressed representation")
+    plt.plot(nNCD, avBitsIndicesNCD, 'o', color=indColor, fillstyle='none', label="Compressed representation (not used to calculate curve)")
     plt.plot(newx, np.exp(func(np.log(newx), poptIndAv[0], poptIndAv[1], poptIndAv[2])), '-', color=indColor)
     plt.fill_between(newx, np.exp(func(np.log(newx), poptInd5[0], poptInd5[1], poptInd5[2])), np.exp(func(np.log(newx), poptInd95[0], poptInd95[1], poptInd95[2])), color=indColor, alpha=.5)
 
@@ -292,13 +291,15 @@ def createPlot():
     # general plot info
     plt.legend()
     ax = plt.subplot()
-    ax.spines["right"].set_visible(False)    
-    ax.spines["top"].set_visible(False) 
+    # ax.spines["right"].set_visible(False)    
+    # ax.spines["top"].set_visible(False) 
     ax.set_xlim(1, 100000)
     plt.xscale('log')
     plt.yscale('log')
-    plt.grid()
-    plt.show()
+    # plt.grid()
+    ax.xaxis.grid(True)
+    # plt.show()
+    plt.tight_layout()
     plt.savefig("./stats/motivation/spaceComparison.pdf")
 
 
