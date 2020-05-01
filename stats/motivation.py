@@ -76,42 +76,31 @@ def calculateResults(exptype, prePath, postPathResults):
     avstatsFile.write('\n# stats file for all instance types of ' + exptype + '\n')
     avstatsFile.write('{}totalInstances {:0.1f}\n'.format(exptype, totalInstances))
     avstatsFile.write('{}totalInstancesUsedInCalcs {:0.1f}\n'.format(exptype, len(expStats)))
-    avstatsFile.write('{}avNumRotations {:0.1f}\n'.format(exptype, getAverage([exp.numRotations for exp in expStats])))
-    avstatsFile.write('{}avMinRotDegree {:0.1f}\n'.format(exptype, getAverage([exp.minRotDegree for exp in expStats])))
-    avstatsFile.write('{}avMaxRotDegree {:0.1f}\n'.format(exptype, getAverage([exp.maxRotDegree for exp in expStats])))
-    avstatsFile.write('{}avAvRotDegree {:0.1f}\n'.format(exptype, getAverage([exp.avRotDegree for exp in expStats])))
-    avstatsFile.write('{}avAvNpDegree {:0.1f}\n'.format(exptype, getAverage([exp.avNpDegree for exp in expStats])))
-    avstatsFile.write('{}avBitsExp {:0.1f}\n'.format(exptype, getAverage([exp.bitsExp for exp in expStats])))
-    avstatsFile.write('{}avBitsTruncated {:0.1f}\n'.format(exptype, getAverage([exp.bitsTruncated for exp in expStats])))
-    avstatsFile.write('{}avBitsIndices {:0.1f}\n'.format(exptype, getAverage([exp.bitsIndices for exp in expStats])))
+    avstatsFile.write('{}avNumRotations {:0.1f}\n'.format(exptype, getAverage([len(exp.rotations) for exp in expStats])))
+    avstatsFile.write('{}avMaxRotDegree {:0.1f}\n'.format(exptype, getAverage([exp.maxDegree for exp in expStats])))
+    avstatsFile.write('{}avBitsExp {:0.1f}\n'.format(exptype, getAverage([exp.bitsRequiredExponential for exp in expStats])))
+    avstatsFile.write('{}avBitsIndices {:0.1f}\n'.format(exptype, getAverage([exp.bitsRequiredCompressed for exp in expStats])))
 
-    avstatsFile.write('{}medianBitsExp {:0.1f}\n'.format(exptype, getMedian([exp.bitsExp for exp in expStats])))
-    avstatsFile.write('{}medianBitsTruncated {:0.1f}\n'.format(exptype, getMedian([exp.bitsTruncated for exp in expStats])))
-    avstatsFile.write('{}medianBitsIndices {:0.1f}\n'.format(exptype, getMedian([exp.bitsIndices for exp in expStats])))
+    avstatsFile.write('{}medianBitsExp {:0.1f}\n'.format(exptype, getMedian([exp.bitsRequiredExponential for exp in expStats])))
+    avstatsFile.write('{}medianBitsIndices {:0.1f}\n'.format(exptype, getMedian([exp.bitsRequiredCompressed for exp in expStats])))
     
-    avstatsFile.write('{}5PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsExp for exp in expStats], 5.0)))
-    avstatsFile.write('{}5PerTruncated {:0.1f}\n'.format(exptype, getPercentile([exp.bitsTruncated for exp in expStats], 5.0)))
-    avstatsFile.write('{}5PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsIndices for exp in expStats], 5.0)))
+    avstatsFile.write('{}5PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsRequiredExponential for exp in expStats], 5.0)))
+    avstatsFile.write('{}5PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsRequiredCompressed for exp in expStats], 5.0)))
     
-    avstatsFile.write('{}95PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsExp for exp in expStats], 95.0)))
-    avstatsFile.write('{}95PerTruncated {:0.1f}\n'.format(exptype, getPercentile([exp.bitsTruncated for exp in expStats], 95.0)))
-    avstatsFile.write('{}95PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsIndices for exp in expStats], 95.0)))
+    avstatsFile.write('{}95PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsRequiredExponential for exp in expStats], 95.0)))
+    avstatsFile.write('{}95PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsRequiredCompressed for exp in expStats], 95.0)))
     
-    avstatsFile.write('{}16PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsExp for exp in expStats], 16.0)))
-    avstatsFile.write('{}16PerTruncated {:0.1f}\n'.format(exptype, getPercentile([exp.bitsTruncated for exp in expStats], 16.0)))
-    avstatsFile.write('{}16PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsIndices for exp in expStats], 16.0)))
+    avstatsFile.write('{}16PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsRequiredExponential for exp in expStats], 16.0)))
+    avstatsFile.write('{}16PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsRequiredCompressed for exp in expStats], 16.0)))
     
-    avstatsFile.write('{}84PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsExp for exp in expStats], 84.0)))
-    avstatsFile.write('{}84PerTruncated {:0.1f}\n'.format(exptype, getPercentile([exp.bitsTruncated for exp in expStats], 84.0)))
-    avstatsFile.write('{}84PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsIndices for exp in expStats], 84.0)))
+    avstatsFile.write('{}84PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsRequiredExponential for exp in expStats], 84.0)))
+    avstatsFile.write('{}84PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsRequiredCompressed for exp in expStats], 84.0)))
     
-    avstatsFile.write('{}2p5PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsExp for exp in expStats], 2.5)))
-    avstatsFile.write('{}2p5PerTruncated {:0.1f}\n'.format(exptype, getPercentile([exp.bitsTruncated for exp in expStats], 2.5)))
-    avstatsFile.write('{}2p5PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsIndices for exp in expStats], 2.5)))
+    avstatsFile.write('{}2p5PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsRequiredExponential for exp in expStats], 2.5)))
+    avstatsFile.write('{}2p5PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsRequiredCompressed for exp in expStats], 2.5)))
     
-    avstatsFile.write('{}97p5PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsExp for exp in expStats], 97.5)))
-    avstatsFile.write('{}97p5PerTruncated {:0.1f}\n'.format(exptype, getPercentile([exp.bitsTruncated for exp in expStats], 97.5)))
-    avstatsFile.write('{}97p5PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsIndices for exp in expStats], 97.5)))
+    avstatsFile.write('{}97p5PerBitsExp {:0.1f}\n'.format(exptype, getPercentile([exp.bitsRequiredExponential for exp in expStats], 97.5)))
+    avstatsFile.write('{}97p5PerBitsIndices {:0.1f}\n'.format(exptype, getPercentile([exp.bitsRequiredCompressed for exp in expStats], 97.5)))
     
     avstatsFile.close()
 
@@ -133,7 +122,6 @@ def collectRawData(exp, pathResults):
         if os.path.isfile(pathResults + name):
             totalInstances+=1
             timeout = False
-            exp = experiment()
             with open(pathResults + name) as f:
                 content = f.readlines()
                 for s in content:
@@ -141,8 +129,6 @@ def collectRawData(exp, pathResults):
                     if "timeout" in s:
                         totalTimeout += 1
                         timeout = True
-                    if not timeout and "numRotations" in s:
-                        exp.numRotations = int(s.split()[1])
                     if not timeout and "rotProfileCombined_" in s:
                         prof = s.split()
                         profNum = []
@@ -151,19 +137,16 @@ def collectRawData(exp, pathResults):
                         rotations.append(profNum)
 
                 if not timeout:
-                    minDegree, maxDegree, avDegree = getMinMaxAvDegree(rotations)
-                    avNpSize = getNumpyAvSize(rotations)
-                    exp.minRotDegree = minDegree
-                    exp.maxRotDegree = maxDegree
-                    exp.avRotDegree = avDegree
-                    exp.avNpDegree = avNpSize
                     if len(rotations) > 0:
-                        exp.calculateSpaceRequirements(len(rotations[0]))
+                        exp = experiment(rotations)
                         # we are only going to look at instances where the number of rotations is > 0
                         expStats.append(exp)
 
     return totalInstances, totalTimeout, expStats
     
+
+
+
 
 
 # collect the raw data from each instance file
@@ -325,57 +308,6 @@ def getPercentile(array, percentile):
     else:
         return np.percentile(array, percentile)
 
-
-# gets the minimum and maximum profile degree of an array or returns -1 if array is 0 in length
-def getMinMaxAvDegree(array2D):
-    minDegree = -1
-    maxDegree = -1
-    totalDegree = 0.0
-    avDegree = -1
-    # average profile
-    if len(array2D) == 0:
-        return minDegree, maxDegree, avDegree
-    else:
-        for profile in array2D:
-            degree = getDegree(profile)
-            totalDegree += degree
-            if minDegree == -1 or degree < minDegree:
-                minDegree = degree
-            if maxDegree == -1 or degree > maxDegree:
-                maxDegree = degree
-    avDegree = float(totalDegree) / float(len(array2D))
-
-    return minDegree, maxDegree, avDegree
-
-
-def getNumpyAvSize(array2D):
-    totalSize = 0.0
-    averageSize = -1
-    if len(array2D) == 0:
-        return averageSize
-    else:
-        converted = np.array(array2D)
-        for array in converted:
-            nonZeroIndices = np.nonzero(array)
-            totalSize = totalSize + len(nonZeroIndices[0])
-        return totalSize / float(len(array2D))
-
-
-
-
-# gets the degree of a profile array or returns -1 if array is 0 in length
-def getDegree(profile):
-    # average profile
-    if len(profile) == 0:
-        return -1
-    else:
-        count = 0
-        for i in reversed(profile):
-            if i == 0:
-                count = count + 1;
-            if not i == 0:
-                return len(profile) - count
-        return len(profile) - count
 
 
 #####################################

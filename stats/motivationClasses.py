@@ -1,46 +1,133 @@
-# Used by the python motivation program to collect results for each experiment together
+# Used by the python motivation program to calculate results for a single experiment
 # @author Frances
 import math
 
+# number of bits in a standard int
+bitsStandardWord = 32
 
 class experiment:
-    numRotations = -1
-    minRotDegree = -1
-    maxRotDegree = -1
-    avRotDegree = -1.0
-    avNpDegree = -1.0
-    bitsExp = -1
-    bitsTruncated = -1
-    bitsIndices = -1
+    def __init__(self, rotations):
+        self.rotations = rotations
+        # each rotation as an exponential number, where the number of bits is not longer than necessary
+        self.bitsRequiredExponential = 0
+        # each rotation as a compressed vector based number, saving the number and index of non-zero elements
+        self.bitsRequiredCompressed = 0
+        self.rotations = rotations
+        _, self.maxDegree, _ = self.getMinMaxAvDegree(self.rotations)
+        self.calculateSpaceRequirements()
 
-    def calculateSpaceRequirements(self, n):
-        # exponential number
-        expNum = self.maxRotDegree**(self.maxRotDegree - 1)
-        self.bitsExp = math.ceil(math.log(expNum, 2)) * self.numRotations
 
-        # truncating zeros
-        # the numbers that can appear in an element of a vector based profile array are between -2n and 2n
-        elementBitsReq = math.ceil(math.log(2*n, 2)) + 1
-        self.bitsTruncated = elementBitsReq * self.avRotDegree * self.numRotations
+    def calculateSpaceRequirements(self):
+        for r in self.rotations:
+            # exponential
+            # example original rotation: < 0, 2, -3, 0, 0, 1, 0, 0, 0, 0, 0 >
+            # if maxDegree over all rotations is 7, then "truncate" the above rotation to < 0, 2, -3, 0, 0, 1, 0 >
+            truncatedR = r[:self.maxDegree]
+            self.bitsRequiredExponential += self.calculateBitsExponential(truncatedR)
 
-        # storing indices of non-zeros
-        # (1) indices: we have avNpDegree number of numbers up to n
-        # (2) values: we have avNpDegree number of numbers between -2n and 2n
-        indicesBitsReq = math.ceil(math.log(n, 2)) * self.avNpDegree
-        elemBitsReq = elementBitsReq * self.avNpDegree
-        self.bitsIndices = (indicesBitsReq + elemBitsReq) * self.numRotations
+            # compressed
+            self.bitsRequiredCompressed += self.calculateBitsCompressed(truncatedR)
+
+        # compressed representation has an additional standard word to store the number of bits for a number of 
+        # length n and the number of bits for a number of length 2n
+        self.bitsRequiredCompressed += bitsStandardWord * 2
+
+
+    def calculateBitsExponential(self, r):
+        exponentialNumber = 0
+
+        # r is truncated at this point so we use n as the new length of r for the below calculation
+        n = len(r)
+        # create the exact exponential number from this such that the ith value contributes a weight of n^(n-i)
+        for i, v in enumerate(r):
+            exponentialNumber += v*(n**(n-(i+1)))
+
+        # number of bits required to store the exponential number (with the addition of a standard word 
+        # to store the number of bits used)
+        numBits = math.ceil(math.log(abs(exponentialNumber), 2)) + 1 + bitsStandardWord
+        return numBits
+
+
+    def calculateBitsCompressed(self, r):
+        # store the index and value of non-zero elements
+        numNonZero = self.getNumNonZero(r)
+
+        # (1) indices: we have numNonZero number of numbers up to n
+        indicesBitsReq = math.ceil(math.log(len(r), 2)) * numNonZero
+
+        # (2) values: we have numNonZero number of numbers between -2n and 2n
+        elementsBitsReq = (math.ceil(math.log(2*len(r), 2)) + 1) * numNonZero
+
+        # number of bits required to store the indices and values
+        return indicesBitsReq + elementsBitsReq
+
+
+    # gets the number of non-zero elements in a profile
+    def getNumNonZero(self, profile):
+        if len(profile) == 0:
+            return -1
+        else:
+            count = 0
+            for i in profile:
+                if not i == 0:
+                    count = count + 1;
+            return count
+
+
+    # gets the minimum and maximum profile degree of an array or returns -1 if array is 0 in length
+    def getMinMaxAvDegree(self, array2D):
+        minDegree = -1
+        maxDegree = -1
+        totalDegree = 0.0
+        avDegree = -1
+        # average profile
+        if len(array2D) == 0:
+            return minDegree, maxDegree, avDegree
+        else:
+            for profile in array2D:
+                degree = self.getDegree(profile)
+                totalDegree += degree
+                if minDegree == -1 or degree < minDegree:
+                    minDegree = degree
+                if maxDegree == -1 or degree > maxDegree:
+                    maxDegree = degree
+        avDegree = float(totalDegree) / float(len(array2D))
+
+        return minDegree, maxDegree, avDegree
+
+
+    def getNumpyAvSize(self, array2D):
+        totalSize = 0.0
+        averageSize = -1
+        if len(array2D) == 0:
+            return averageSize
+        else:
+            converted = np.array(array2D)
+            for array in converted:
+                nonZeroIndices = np.nonzero(array)
+                totalSize = totalSize + len(nonZeroIndices[0])
+            return totalSize / float(len(array2D))
+
+
+    # gets the degree of a profile array or returns -1 if array is 0 in length
+    def getDegree(self, profile):
+        # average profile
+        if len(profile) == 0:
+            return -1
+        else:
+            count = 0
+            for i in reversed(profile):
+                if i == 0:
+                    count = count + 1;
+                if not i == 0:
+                    return len(profile) - count
+            return len(profile) - count
 
 
     def printExp(self):
-        print("numRotations: " + str(self.numRotations))
-        print("minRotDegree: " + str(self.minRotDegree))
-        print("maxRotDegree: " + str(self.maxRotDegree))
-        print("avRotDegree: " + str(self.avRotDegree))
-        print("avNpDegree: " + str(self.avNpDegree))
-        print("bitsExp: " + str(self.bitsExp))
-        print("bitsTruncated: " + str(self.bitsTruncated))
-        print("bitsIndices: " + str(self.bitsIndices))
-
+        print("rotations: " + str(self.rotations))
+        print("bitsRequiredExponential: " + str(self.bitsRequiredExponential))
+        print("bitsRequiredCompressed: " + str(self.bitsRequiredCompressed))
 
 
 
