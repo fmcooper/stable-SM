@@ -28,35 +28,43 @@ class experiment:
             # compressed
             self.bitsRequiredCompressed += self.calculateBitsCompressed(truncatedR)
 
-        # compressed representation has an additional standard word to store the number of bits for a number of 
-        # length n and the number of bits for a number of length 2n
-        self.bitsRequiredCompressed += bitsStandardWord * 2
+        self.bitsRequiredCompressed += + 2 * bitsStandardWord
 
 
     def calculateBitsExponential(self, r):
         exponentialNumber = 0
 
-        # r is truncated at this point so we use n as the new length of r for the below calculation
-        n = len(r)
+        if len(r) == 0:
+            return bitsStandardWord
+        
         # create the exact exponential number from this such that the ith value contributes a weight of n^(n-i)
         for i, v in enumerate(r):
-            exponentialNumber += v*(n**(n-(i+1)))
+            exponentialNumber += v*(len(r)**(len(r)-(i+1)))
 
         # number of bits required to store the exponential number (with the addition of a standard word 
         # to store the number of bits used)
-        numBits = math.ceil(math.log(abs(exponentialNumber), 2)) + 1 + bitsStandardWord
+        if exponentialNumber == 0:
+            numBits = 1 + bitsStandardWord
+        else:
+            numBits = math.ceil(math.log(abs(exponentialNumber), 2)) + 1 + bitsStandardWord
         return numBits
 
 
     def calculateBitsCompressed(self, r):
+        if len(r) == 0:
+            return bitsStandardWord
+
         # store the index and value of non-zero elements
         numNonZero = self.getNumNonZero(r)
 
+        if numNonZero == 0:
+            return bitsStandardWord
+
         # (1) indices: we have numNonZero number of numbers up to n
-        indicesBitsReq = math.ceil(math.log(len(r), 2)) * numNonZero
+        indicesBitsReq = math.ceil(math.log(len(r), 2)) * numNonZero + bitsStandardWord
 
         # (2) values: we have numNonZero number of numbers between -2n and 2n
-        elementsBitsReq = (math.ceil(math.log(2*len(r), 2)) + 1) * numNonZero
+        elementsBitsReq = (math.ceil(math.log(2*len(r), 2)) + 1) * numNonZero + bitsStandardWord
 
         # number of bits required to store the indices and values
         return indicesBitsReq + elementsBitsReq

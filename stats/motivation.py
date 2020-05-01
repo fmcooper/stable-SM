@@ -114,7 +114,6 @@ def collectRawData(exp, pathResults):
     totalInstances = 0
     totalTimeout = 0
 
-    rotations = []
 
 
     # run over the results
@@ -122,6 +121,7 @@ def collectRawData(exp, pathResults):
         if os.path.isfile(pathResults + name):
             totalInstances+=1
             timeout = False
+            rotations = []
             with open(pathResults + name) as f:
                 content = f.readlines()
                 for s in content:
@@ -129,7 +129,7 @@ def collectRawData(exp, pathResults):
                     if "timeout" in s:
                         totalTimeout += 1
                         timeout = True
-                    if not timeout and "rotProfileCombined_" in s:
+                    if "rotProfileCombined_" in s:
                         prof = s.split()
                         profNum = []
                         for x in range(1,len(prof)):
@@ -137,9 +137,10 @@ def collectRawData(exp, pathResults):
                         rotations.append(profNum)
 
                 if not timeout:
+                    # we are only going to look at instances where the number of rotations is > 0
                     if len(rotations) > 0:
+                        print(name, rotations)
                         exp = experiment(rotations)
-                        # we are only going to look at instances where the number of rotations is > 0
                         expStats.append(exp)
 
     return totalInstances, totalTimeout, expStats
