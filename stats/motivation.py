@@ -139,7 +139,6 @@ def collectRawData(exp, pathResults):
                 if not timeout:
                     # we are only going to look at instances where the number of rotations is > 0
                     if len(rotations) > 0:
-                        print(name, rotations)
                         exp = experiment(rotations)
                         expStats.append(exp)
 
