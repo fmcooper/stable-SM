@@ -151,6 +151,10 @@ python stats/motivation.py ./Evaluations/
 
 # 7) versions
 
+V1.0.4
+* updates to table and plot makers
+* README updated
+
 V1.0.3
 * added functionality to create graphs found in associated paper
 * ``stats/tempStatsResults/avstats.txt`` file now contains stats for all data up to n = 1000
