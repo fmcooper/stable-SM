@@ -1,4 +1,4 @@
-Stats runthrough conducted at: 2020-05-01 19:14
+Stats runthrough conducted at: 2020-05-04 10:14
 
 
 # stats file for all instance types of S10
@@ -7,21 +7,21 @@ S10totalInstancesUsedInCalcs 821.0
 S10avNumRotations 2.2
 S10avMaxRotDegree 9.0
 S10avBitsExp 127.1
-S10avBitsIndices 312.6
+S10avBitsIndices 243.1
 S10medianBitsExp 118.0
-S10medianBitsIndices 292.0
+S10medianBitsIndices 228.0
 S105PerBitsExp 44.0
-S105PerBitsIndices 158.0
+S105PerBitsIndices 126.0
 S1095PerBitsExp 253.0
-S1095PerBitsIndices 560.0
+S1095PerBitsIndices 424.0
 S1016PerBitsExp 55.0
-S1016PerBitsIndices 176.0
+S1016PerBitsIndices 144.0
 S1084PerBitsExp 188.0
-S1084PerBitsIndices 436.0
+S1084PerBitsIndices 340.0
 S102p5PerBitsExp 39.0
-S102p5PerBitsIndices 144.0
+S102p5PerBitsIndices 112.0
 S1097p5PerBitsExp 306.0
-S1097p5PerBitsIndices 654.0
+S1097p5PerBitsIndices 490.0
 
 # stats file for all instance types of S20
 S20totalInstances 1000.0
@@ -29,21 +29,21 @@ S20totalInstancesUsedInCalcs 970.0
 S20avNumRotations 4.3
 S20avMaxRotDegree 18.1
 S20avBitsExp 451.7
-S20avBitsIndices 710.9
+S20avBitsIndices 573.2
 S20medianBitsExp 424.0
-S20medianBitsIndices 680.0
+S20medianBitsIndices 548.0
 S205PerBitsExp 100.0
-S205PerBitsIndices 236.0
+S205PerBitsIndices 204.0
 S2095PerBitsExp 878.6
-S2095PerBitsIndices 1284.0
+S2095PerBitsIndices 1028.0
 S2016PerBitsExp 208.0
-S2016PerBitsIndices 372.0
+S2016PerBitsIndices 308.0
 S2084PerBitsExp 686.0
-S2084PerBitsIndices 1036.0
+S2084PerBitsIndices 832.0
 S202p5PerBitsExp 84.0
-S202p5PerBitsIndices 208.0
+S202p5PerBitsIndices 176.0
 S2097p5PerBitsExp 1001.9
-S2097p5PerBitsIndices 1404.0
+S2097p5PerBitsIndices 1120.0
 
 # stats file for all instance types of S30
 S30totalInstances 1000.0
@@ -51,21 +51,21 @@ S30totalInstancesUsedInCalcs 992.0
 S30avNumRotations 6.6
 S30avMaxRotDegree 27.1
 S30avBitsExp 1045.9
-S30avBitsIndices 1174.9
+S30avBitsIndices 964.1
 S30medianBitsExp 1014.0
-S30medianBitsIndices 1156.0
+S30medianBitsIndices 952.0
 S305PerBitsExp 305.9
-S305PerBitsIndices 444.0
+S305PerBitsIndices 380.0
 S3095PerBitsExp 1865.4
-S3095PerBitsIndices 1948.0
+S3095PerBitsIndices 1589.8
 S3016PerBitsExp 548.0
-S3016PerBitsIndices 704.0
+S3016PerBitsIndices 576.0
 S3084PerBitsExp 1540.4
-S3084PerBitsIndices 1636.0
+S3084PerBitsIndices 1336.0
 S302p5PerBitsExp 193.3
-S302p5PerBitsIndices 336.0
+S302p5PerBitsIndices 272.0
 S3097p5PerBitsExp 2072.7
-S3097p5PerBitsIndices 2127.2
+S3097p5PerBitsIndices 1743.2
 
 # stats file for all instance types of S40
 S40totalInstances 1000.0
@@ -73,21 +73,21 @@ S40totalInstancesUsedInCalcs 999.0
 S40avNumRotations 8.9
 S40avMaxRotDegree 36.6
 S40avBitsExp 1954.6
-S40avBitsIndices 1868.8
+S40avBitsIndices 1582.7
 S40medianBitsExp 1913.0
-S40medianBitsIndices 1872.0
+S40medianBitsIndices 1580.0
 S405PerBitsExp 644.1
-S405PerBitsIndices 752.0
+S405PerBitsIndices 634.8
 S4095PerBitsExp 3308.2
-S4095PerBitsIndices 2978.4
+S4095PerBitsIndices 2514.4
 S4016PerBitsExp 1135.0
-S4016PerBitsIndices 1161.4
+S4016PerBitsIndices 984.0
 S4084PerBitsExp 2816.0
-S4084PerBitsIndices 2563.9
+S4084PerBitsIndices 2170.0
 S402p5PerBitsExp 522.9
-S402p5PerBitsIndices 620.0
+S402p5PerBitsIndices 524.0
 S4097p5PerBitsExp 3545.5
-S4097p5PerBitsIndices 3131.8
+S4097p5PerBitsIndices 2682.2
 
 # stats file for all instance types of S50
 S50totalInstances 1000.0
@@ -95,21 +95,21 @@ S50totalInstancesUsedInCalcs 1000.0
 S50avNumRotations 11.2
 S50avMaxRotDegree 45.6
 S50avBitsExp 3119.0
-S50avBitsIndices 2503.3
+S50avBitsIndices 2145.9
 S50medianBitsExp 3082.5
-S50medianBitsIndices 2490.0
+S50medianBitsIndices 2138.0
 S505PerBitsExp 1247.8
-S505PerBitsIndices 1196.0
+S505PerBitsIndices 1035.4
 S5095PerBitsExp 4976.9
-S5095PerBitsIndices 3784.7
+S5095PerBitsIndices 3248.3
 S5016PerBitsExp 2004.5
-S5016PerBitsIndices 1723.0
+S5016PerBitsIndices 1487.0
 S5084PerBitsExp 4290.2
-S5084PerBitsIndices 3307.0
+S5084PerBitsIndices 2840.0
 S502p5PerBitsExp 1009.0
-S502p5PerBitsIndices 991.9
+S502p5PerBitsIndices 863.4
 S5097p5PerBitsExp 5262.5
-S5097p5PerBitsIndices 4002.3
+S5097p5PerBitsIndices 3450.8
 
 # stats file for all instance types of S60
 S60totalInstances 1000.0
@@ -117,21 +117,21 @@ S60totalInstancesUsedInCalcs 1000.0
 S60avNumRotations 13.4
 S60avMaxRotDegree 54.6
 S60avBitsExp 4588.6
-S60avBitsIndices 3161.0
+S60avBitsIndices 2733.3
 S60medianBitsExp 4546.0
-S60medianBitsIndices 3136.0
+S60medianBitsIndices 2708.0
 S605PerBitsExp 2028.6
-S605PerBitsIndices 1666.0
+S605PerBitsIndices 1464.0
 S6095PerBitsExp 7425.2
-S6095PerBitsIndices 4816.7
+S6095PerBitsIndices 4168.1
 S6016PerBitsExp 2893.4
-S6016PerBitsIndices 2199.0
+S6016PerBitsIndices 1909.4
 S6084PerBitsExp 6314.3
-S6084PerBitsIndices 4112.3
+S6084PerBitsIndices 3539.6
 S602p5PerBitsExp 1589.5
-S602p5PerBitsIndices 1351.8
+S602p5PerBitsIndices 1151.9
 S6097p5PerBitsExp 7852.1
-S6097p5PerBitsIndices 5036.3
+S6097p5PerBitsIndices 4376.1
 
 # stats file for all instance types of S70
 S70totalInstances 1000.0
@@ -139,21 +139,21 @@ S70totalInstancesUsedInCalcs 1000.0
 S70avNumRotations 15.9
 S70avMaxRotDegree 64.4
 S70avBitsExp 6594.8
-S70avBitsIndices 4203.5
+S70avBitsIndices 3693.3
 S70medianBitsExp 6567.5
-S70medianBitsIndices 4187.0
+S70medianBitsIndices 3662.0
 S705PerBitsExp 3261.8
-S705PerBitsIndices 2286.5
+S705PerBitsIndices 1978.6
 S7095PerBitsExp 9978.3
-S7095PerBitsIndices 6240.0
+S7095PerBitsIndices 5504.5
 S7016PerBitsExp 4467.8
-S7016PerBitsIndices 2993.7
+S7016PerBitsIndices 2630.7
 S7084PerBitsExp 8700.6
-S7084PerBitsIndices 5394.2
+S7084PerBitsIndices 4736.0
 S702p5PerBitsExp 2549.1
-S702p5PerBitsIndices 1903.4
+S702p5PerBitsIndices 1648.0
 S7097p5PerBitsExp 10719.1
-S7097p5PerBitsIndices 6544.4
+S7097p5PerBitsIndices 5808.0
 
 # stats file for all instance types of S80
 S80totalInstances 1000.0
@@ -161,21 +161,21 @@ S80totalInstancesUsedInCalcs 1000.0
 S80avNumRotations 18.2
 S80avMaxRotDegree 73.4
 S80avBitsExp 8776.0
-S80avBitsIndices 5171.9
+S80avBitsIndices 4588.7
 S80medianBitsExp 8811.5
-S80medianBitsIndices 5136.0
+S80medianBitsIndices 4560.0
 S805PerBitsExp 4617.9
-S805PerBitsIndices 2987.6
+S805PerBitsIndices 2639.4
 S8095PerBitsExp 13216.3
-S8095PerBitsIndices 7376.0
+S8095PerBitsIndices 6512.8
 S8016PerBitsExp 6133.7
-S8016PerBitsIndices 3807.4
+S8016PerBitsIndices 3376.0
 S8084PerBitsExp 11475.4
-S8084PerBitsIndices 6544.0
+S8084PerBitsIndices 5794.6
 S802p5PerBitsExp 3823.5
-S802p5PerBitsIndices 2537.0
+S802p5PerBitsIndices 2239.4
 S8097p5PerBitsExp 14150.2
-S8097p5PerBitsIndices 7728.0
+S8097p5PerBitsIndices 6816.4
 
 # stats file for all instance types of S90
 S90totalInstances 1000.0
@@ -183,21 +183,21 @@ S90totalInstancesUsedInCalcs 1000.0
 S90avNumRotations 20.0
 S90avMaxRotDegree 83.1
 S90avBitsExp 11162.1
-S90avBitsIndices 5973.9
+S90avBitsIndices 5332.8
 S90medianBitsExp 11153.0
-S90medianBitsIndices 5960.0
+S90medianBitsIndices 5336.0
 S905PerBitsExp 5863.1
-S905PerBitsIndices 3471.7
+S905PerBitsIndices 3085.6
 S9095PerBitsExp 16872.1
-S9095PerBitsIndices 8480.8
+S9095PerBitsIndices 7521.6
 S9016PerBitsExp 8008.8
-S9016PerBitsIndices 4589.4
+S9016PerBitsIndices 4077.4
 S9084PerBitsExp 14266.9
-S9084PerBitsIndices 7365.1
+S9084PerBitsIndices 6578.6
 S902p5PerBitsExp 4790.3
-S902p5PerBitsIndices 3007.6
+S902p5PerBitsIndices 2703.6
 S9097p5PerBitsExp 17609.1
-S9097p5PerBitsIndices 8896.4
+S9097p5PerBitsIndices 7936.0
 
 # stats file for all instance types of S100
 S100totalInstances 1000.0
@@ -205,21 +205,21 @@ S100totalInstancesUsedInCalcs 1000.0
 S100avNumRotations 22.4
 S100avMaxRotDegree 92.1
 S100avBitsExp 14040.2
-S100avBitsIndices 6894.8
+S100avBitsIndices 6178.5
 S100medianBitsExp 14038.5
-S100medianBitsIndices 6872.0
+S100medianBitsIndices 6160.0
 S1005PerBitsExp 7632.9
-S1005PerBitsIndices 4315.4
+S1005PerBitsIndices 3824.0
 S10095PerBitsExp 20334.6
-S10095PerBitsIndices 9472.0
+S10095PerBitsIndices 8480.8
 S10016PerBitsExp 10057.4
-S10016PerBitsIndices 5293.4
+S10016PerBitsIndices 4752.0
 S10084PerBitsExp 18010.2
-S10084PerBitsIndices 8498.6
+S10084PerBitsIndices 7586.6
 S1002p5PerBitsExp 6752.1
-S1002p5PerBitsIndices 3776.0
+S1002p5PerBitsIndices 3391.2
 S10097p5PerBitsExp 21429.7
-S10097p5PerBitsIndices 9792.8
+S10097p5PerBitsIndices 8768.8
 
 # stats file for all instance types of S200
 S200totalInstances 1000.0
@@ -227,21 +227,21 @@ S200totalInstancesUsedInCalcs 1000.0
 S200avNumRotations 41.9
 S200avMaxRotDegree 185.4
 S200avBitsExp 59644.7
-S200avBitsIndices 18384.6
+S200avBitsIndices 17044.9
 S200medianBitsExp 60364.0
-S200medianBitsIndices 18501.0
+S200medianBitsIndices 17140.0
 S2005PerBitsExp 37007.5
-S2005PerBitsIndices 13071.8
+S2005PerBitsIndices 12061.4
 S20095PerBitsExp 80087.2
-S20095PerBitsIndices 23382.0
+S20095PerBitsIndices 21662.1
 S20016PerBitsExp 46673.2
-S20016PerBitsIndices 15225.4
+S20016PerBitsIndices 14085.4
 S20084PerBitsExp 72091.2
-S20084PerBitsIndices 21298.9
+S20084PerBitsIndices 19712.3
 S2002p5PerBitsExp 32792.8
-S2002p5PerBitsIndices 11997.5
+S2002p5PerBitsIndices 11147.6
 S20097p5PerBitsExp 83188.1
-S20097p5PerBitsIndices 24444.4
+S20097p5PerBitsIndices 22680.5
 
 # stats file for all instance types of S300
 S300totalInstances 1000.0
@@ -249,21 +249,21 @@ S300totalInstancesUsedInCalcs 1000.0
 S300avNumRotations 59.2
 S300avMaxRotDegree 279.3
 S300avBitsExp 136156.2
-S300avBitsIndices 33501.6
+S300avBitsIndices 31607.3
 S300medianBitsExp 138035.0
-S300medianBitsIndices 33802.0
+S300medianBitsIndices 31892.0
 S3005PerBitsExp 91022.7
-S3005PerBitsIndices 24532.3
+S3005PerBitsIndices 23001.8
 S30095PerBitsExp 177266.8
-S30095PerBitsIndices 41341.0
+S30095PerBitsIndices 39012.4
 S30016PerBitsExp 110516.0
-S30016PerBitsIndices 28454.1
+S30016PerBitsIndices 26850.7
 S30084PerBitsExp 160590.7
-S30084PerBitsIndices 38331.2
+S30084PerBitsIndices 36217.8
 S3002p5PerBitsExp 83448.4
-S3002p5PerBitsIndices 22255.8
+S3002p5PerBitsIndices 20879.2
 S30097p5PerBitsExp 186766.4
-S30097p5PerBitsIndices 42743.0
+S30097p5PerBitsIndices 40375.0
 
 # stats file for all instance types of S400
 S400totalInstances 1000.0
@@ -271,21 +271,21 @@ S400totalInstancesUsedInCalcs 1000.0
 S400avNumRotations 76.2
 S400avMaxRotDegree 372.8
 S400avBitsExp 244940.5
-S400avBitsIndices 49100.0
+S400avBitsIndices 46661.3
 S400medianBitsExp 248674.5
-S400medianBitsIndices 49390.0
+S400medianBitsIndices 46880.0
 S4005PerBitsExp 173891.7
-S4005PerBitsIndices 39141.6
+S4005PerBitsIndices 37165.4
 S40095PerBitsExp 307109.8
-S40095PerBitsIndices 57705.6
+S40095PerBitsIndices 54896.6
 S40016PerBitsExp 205806.1
-S40016PerBitsIndices 43441.1
+S40016PerBitsIndices 41207.0
 S40084PerBitsExp 284909.1
-S40084PerBitsIndices 54801.3
+S40084PerBitsIndices 52041.1
 S4002p5PerBitsExp 160974.1
-S4002p5PerBitsIndices 36904.6
+S4002p5PerBitsIndices 35115.8
 S40097p5PerBitsExp 319298.4
-S40097p5PerBitsIndices 59810.2
+S40097p5PerBitsIndices 56924.6
 
 # stats file for all instance types of S500
 S500totalInstances 1000.0
@@ -293,21 +293,21 @@ S500totalInstancesUsedInCalcs 1000.0
 S500avNumRotations 90.7
 S500avMaxRotDegree 467.8
 S500avBitsExp 379087.0
-S500avBitsIndices 64306.7
+S500avBitsIndices 61405.3
 S500medianBitsExp 381474.5
-S500medianBitsIndices 64606.0
+S500medianBitsIndices 61654.0
 S5005PerBitsExp 274168.9
-S5005PerBitsIndices 51447.4
+S5005PerBitsIndices 49173.8
 S50095PerBitsExp 472328.2
-S50095PerBitsIndices 75964.4
+S50095PerBitsIndices 72612.8
 S50016PerBitsExp 320893.5
-S50016PerBitsIndices 56849.1
+S50016PerBitsIndices 54300.0
 S50084PerBitsExp 439053.4
-S50084PerBitsIndices 71874.6
+S50084PerBitsIndices 68632.5
 S5002p5PerBitsExp 251572.8
-S5002p5PerBitsIndices 49128.9
+S5002p5PerBitsIndices 46894.3
 S50097p5PerBitsExp 486839.9
-S50097p5PerBitsIndices 77974.5
+S50097p5PerBitsIndices 74418.5
 
 # stats file for all instance types of S600
 S600totalInstances 1000.0
@@ -315,21 +315,21 @@ S600totalInstancesUsedInCalcs 1000.0
 S600avNumRotations 105.8
 S600avMaxRotDegree 561.6
 S600avBitsExp 546249.3
-S600avBitsIndices 88154.2
+S600avBitsIndices 84767.9
 S600medianBitsExp 549230.5
-S600medianBitsIndices 89112.0
+S600medianBitsIndices 85786.0
 S6005PerBitsExp 397569.3
-S6005PerBitsIndices 70318.2
+S6005PerBitsIndices 67468.6
 S60095PerBitsExp 670309.6
-S60095PerBitsIndices 103455.4
+S60095PerBitsIndices 99364.5
 S60016PerBitsExp 472296.6
-S60016PerBitsIndices 78924.5
+S60016PerBitsIndices 75947.4
 S60084PerBitsExp 625447.6
-S60084PerBitsIndices 97334.6
+S60084PerBitsIndices 93435.7
 S6002p5PerBitsExp 359929.3
-S6002p5PerBitsIndices 65268.5
+S6002p5PerBitsIndices 62583.5
 S60097p5PerBitsExp 695828.2
-S60097p5PerBitsIndices 104872.4
+S60097p5PerBitsIndices 100731.7
 
 # stats file for all instance types of S700
 S700totalInstances 1000.0
@@ -337,21 +337,21 @@ S700totalInstancesUsedInCalcs 1000.0
 S700avNumRotations 119.1
 S700avMaxRotDegree 657.9
 S700avBitsExp 737423.3
-S700avBitsIndices 107256.6
+S700avBitsIndices 103445.1
 S700medianBitsExp 742393.0
-S700medianBitsIndices 107330.0
+S700medianBitsIndices 103565.0
 S7005PerBitsExp 566032.1
-S7005PerBitsIndices 89782.5
+S7005PerBitsIndices 86707.3
 S70095PerBitsExp 892158.2
-S70095PerBitsIndices 124266.9
+S70095PerBitsIndices 119857.8
 S70016PerBitsExp 637163.2
-S70016PerBitsIndices 97233.6
+S70016PerBitsIndices 93805.4
 S70084PerBitsExp 840859.0
-S70084PerBitsIndices 117808.3
+S70084PerBitsIndices 113633.3
 S7002p5PerBitsExp 517860.0
-S7002p5PerBitsIndices 84523.6
+S7002p5PerBitsIndices 81453.9
 S70097p5PerBitsExp 925261.2
-S70097p5PerBitsIndices 127550.0
+S70097p5PerBitsIndices 122965.9
 
 # stats file for all instance types of S800
 S800totalInstances 1000.0
@@ -359,21 +359,21 @@ S800totalInstancesUsedInCalcs 999.0
 S800avNumRotations 131.4
 S800avMaxRotDegree 749.7
 S800avBitsExp 945290.9
-S800avBitsIndices 125589.5
+S800avBitsIndices 121385.7
 S800medianBitsExp 954819.0
-S800medianBitsIndices 126078.0
+S800medianBitsIndices 121794.0
 S8005PerBitsExp 704935.0
-S8005PerBitsIndices 105097.8
+S8005PerBitsIndices 101562.0
 S80095PerBitsExp 1149209.9
-S80095PerBitsIndices 144248.0
+S80095PerBitsIndices 139396.8
 S80016PerBitsExp 822617.6
-S80016PerBitsIndices 114425.0
+S80016PerBitsIndices 110628.1
 S80084PerBitsExp 1067291.2
-S80084PerBitsIndices 136927.8
+S80084PerBitsIndices 132305.7
 S8002p5PerBitsExp 652171.5
-S8002p5PerBitsIndices 100777.9
+S8002p5PerBitsIndices 97480.3
 S80097p5PerBitsExp 1177318.8
-S80097p5PerBitsIndices 147781.8
+S80097p5PerBitsIndices 142722.2
 
 # stats file for all instance types of S900
 S900totalInstances 1000.0
@@ -381,21 +381,21 @@ S900totalInstancesUsedInCalcs 1000.0
 S900avNumRotations 144.9
 S900avMaxRotDegree 844.7
 S900avBitsExp 1194328.9
-S900avBitsIndices 146105.1
+S900avBitsIndices 141469.8
 S900medianBitsExp 1202974.0
-S900medianBitsIndices 145942.0
+S900medianBitsIndices 141310.0
 S9005PerBitsExp 935601.9
-S9005PerBitsIndices 125170.1
+S9005PerBitsIndices 121259.1
 S90095PerBitsExp 1432609.0
-S90095PerBitsIndices 165704.9
+S90095PerBitsIndices 160431.9
 S90016PerBitsExp 1043941.4
-S90016PerBitsIndices 133649.0
+S90016PerBitsIndices 129579.2
 S90084PerBitsExp 1351846.1
-S90084PerBitsIndices 158840.8
+S90084PerBitsIndices 153783.0
 S9002p5PerBitsExp 885035.0
-S9002p5PerBitsIndices 121069.9
+S9002p5PerBitsIndices 117172.1
 S90097p5PerBitsExp 1476016.1
-S90097p5PerBitsIndices 169982.2
+S90097p5PerBitsIndices 164511.0
 
 # stats file for all instance types of S1000
 S1000totalInstances 1000.0
@@ -403,21 +403,21 @@ S1000totalInstancesUsedInCalcs 999.0
 S1000avNumRotations 157.6
 S1000avMaxRotDegree 942.2
 S1000avBitsExp 1472468.5
-S1000avBitsIndices 166607.1
+S1000avBitsIndices 161565.1
 S1000medianBitsExp 1488455.0
-S1000medianBitsIndices 167542.0
+S1000medianBitsIndices 162486.0
 S10005PerBitsExp 1127115.9
-S10005PerBitsIndices 141094.2
+S10005PerBitsIndices 136646.2
 S100095PerBitsExp 1749902.2
-S100095PerBitsIndices 187410.6
+S100095PerBitsIndices 181580.0
 S100016PerBitsExp 1292989.8
-S100016PerBitsIndices 151839.4
+S100016PerBitsIndices 147261.0
 S100084PerBitsExp 1658810.8
-S100084PerBitsIndices 180680.5
+S100084PerBitsIndices 175094.0
 S10002p5PerBitsExp 1070248.7
-S10002p5PerBitsIndices 135303.1
+S10002p5PerBitsIndices 131096.7
 S100097p5PerBitsExp 1790291.2
-S100097p5PerBitsIndices 190951.9
+S100097p5PerBitsIndices 185187.1
 
 # stats file for all instance types of S2000
 S2000totalInstances 5.0
@@ -425,21 +425,21 @@ S2000totalInstancesUsedInCalcs 5.0
 S2000avNumRotations 271.4
 S2000avMaxRotDegree 1900.8
 S2000avBitsExp 5634627.2
-S2000avBitsIndices 426576.0
+S2000avBitsIndices 417891.2
 S2000medianBitsExp 5817371.0
-S2000medianBitsIndices 422968.0
+S2000medianBitsIndices 414424.0
 S20005PerBitsExp 4822973.0
-S20005PerBitsIndices 407689.6
+S20005PerBitsIndices 399376.0
 S200095PerBitsExp 6400256.0
-S200095PerBitsIndices 453091.2
+S200095PerBitsIndices 443734.4
 S200016PerBitsExp 5061985.4
-S200016PerBitsIndices 409206.7
+S200016PerBitsIndices 400836.8
 S200084PerBitsExp 6094735.4
-S200084PerBitsIndices 443031.0
+S200084PerBitsIndices 434068.5
 S20002p5PerBitsExp 4768652.0
-S20002p5PerBitsIndices 407344.8
+S20002p5PerBitsIndices 399044.0
 S200097p5PerBitsExp 6469692.5
-S200097p5PerBitsIndices 455377.6
+S200097p5PerBitsIndices 445931.2
 
 # stats file for all instance types of S3000
 S3000totalInstances 5.0
@@ -447,21 +447,21 @@ S3000totalInstancesUsedInCalcs 5.0
 S3000avNumRotations 356.0
 S3000avMaxRotDegree 2890.4
 S3000avBitsExp 11824311.4
-S3000avBitsIndices 750354.0
+S3000avBitsIndices 738962.0
 S3000medianBitsExp 11868682.0
-S3000medianBitsIndices 747026.0
+S3000medianBitsIndices 735218.0
 S30005PerBitsExp 11037446.4
-S30005PerBitsIndices 706689.2
+S30005PerBitsIndices 696282.8
 S300095PerBitsExp 12497118.8
-S300095PerBitsIndices 788641.2
+S300095PerBitsIndices 776654.0
 S300016PerBitsExp 11483543.5
-S300016PerBitsIndices 725176.2
+S300016PerBitsIndices 714403.8
 S300084PerBitsExp 12185767.8
-S300084PerBitsIndices 780481.8
+S300084PerBitsIndices 768593.2
 S30002p5PerBitsExp 10936060.7
-S30002p5PerBitsIndices 702487.6
+S30002p5PerBitsIndices 692164.4
 S300097p5PerBitsExp 12567880.4
-S300097p5PerBitsIndices 790495.6
+S300097p5PerBitsIndices 778486.0
 
 # stats file for all instance types of S4000
 S4000totalInstances 5.0
@@ -469,21 +469,21 @@ S4000totalInstancesUsedInCalcs 5.0
 S4000avNumRotations 433.8
 S4000avMaxRotDegree 3800.8
 S4000avBitsExp 19614086.2
-S4000avBitsIndices 1043735.6
+S4000avBitsIndices 1029854.0
 S4000medianBitsExp 18889341.0
-S4000medianBitsIndices 1042684.0
+S4000medianBitsIndices 1029180.0
 S40005PerBitsExp 18401851.4
-S40005PerBitsIndices 993333.6
+S40005PerBitsIndices 980168.8
 S400095PerBitsExp 21468810.8
-S400095PerBitsIndices 1086210.0
+S400095PerBitsIndices 1071605.2
 S400016PerBitsExp 18602278.9
-S400016PerBitsIndices 1010193.5
+S400016PerBitsIndices 996578.2
 S400084PerBitsExp 20857544.8
-S400084PerBitsIndices 1081748.4
+S400084PerBitsIndices 1067326.6
 S40002p5PerBitsExp 18356299.7
-S40002p5PerBitsIndices 989501.8
+S40002p5PerBitsIndices 976439.4
 S400097p5PerBitsExp 21607734.9
-S400097p5PerBitsIndices 1087224.0
+S400097p5PerBitsIndices 1072577.6
 
 # stats file for all instance types of S5000
 S5000totalInstances 5.0
@@ -491,18 +491,18 @@ S5000totalInstancesUsedInCalcs 3.0
 S5000avNumRotations 512.7
 S5000avMaxRotDegree 4895.7
 S5000avBitsExp 30768256.0
-S5000avBitsIndices 1450449.3
+S5000avBitsIndices 1434044.0
 S5000medianBitsExp 30472986.0
-S5000medianBitsIndices 1447524.0
+S5000medianBitsIndices 1430948.0
 S50005PerBitsExp 30221968.8
-S50005PerBitsIndices 1440997.2
+S50005PerBitsIndices 1424421.2
 S500095PerBitsExp 31521232.2
-S500095PerBitsIndices 1461949.2
+S500095PerBitsIndices 1445834.0
 S500016PerBitsExp 30283328.6
-S500016PerBitsIndices 1442592.6
+S500016PerBitsIndices 1426016.6
 S500084PerBitsExp 31264994.2
-S500084PerBitsIndices 1458423.0
+S500084PerBitsIndices 1442195.2
 S50002p5PerBitsExp 30208023.4
-S50002p5PerBitsIndices 1440634.6
+S50002p5PerBitsIndices 1424058.6
 S500097p5PerBitsExp 31579468.1
-S500097p5PerBitsIndices 1462750.6
+S500097p5PerBitsIndices 1446661.0
