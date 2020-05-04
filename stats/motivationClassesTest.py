@@ -46,9 +46,9 @@ class TestBitCalculations(unittest.TestCase):
         exp = mc.experiment([])
         result = exp.calculateBitsCompressed(data)
         numNonZero = 3
-        indicesBits = numNonZero * math.ceil(math.log(len(data), 2)) + mc.bitsStandardWord
-        valuesBits = numNonZero * (math.ceil(math.log(2 * len(data), 2)) + 1) + mc.bitsStandardWord
-        numBits = indicesBits + valuesBits
+        indicesBits = numNonZero * math.ceil(math.log(len(data), 2))
+        valuesBits = numNonZero * (math.ceil(math.log(2 * len(data), 2)) + 1)
+        numBits = indicesBits + valuesBits + mc.bitsStandardWord
         self.assertEqual(result, numBits)
 
     def test_compressed_zeros(self):
@@ -99,9 +99,9 @@ class TestBitCalculations(unittest.TestCase):
         rot1numBitsExp = math.ceil(math.log(abs(rot1expNum), 2)) + 1 + mc.bitsStandardWord
         # compressed
         numNonZero = 3
-        rot1indicesBits = numNonZero * math.ceil(math.log(maxDegree, 2)) + mc.bitsStandardWord
-        rot1valuesBits = numNonZero * (math.ceil(math.log(2 * maxDegree, 2)) + 1) + mc.bitsStandardWord
-        rot1numBitsComp = rot1indicesBits + rot1valuesBits
+        rot1indicesBits = numNonZero * math.ceil(math.log(maxDegree, 2))
+        rot1valuesBits = numNonZero * (math.ceil(math.log(2 * maxDegree, 2)) + 1)
+        rot1numBitsComp = rot1indicesBits + rot1valuesBits + + mc.bitsStandardWord
 
         # 2nd rotation
         # exponential
@@ -109,9 +109,9 @@ class TestBitCalculations(unittest.TestCase):
         rot2numBitsExp = math.ceil(math.log(abs(rot2expNum), 2)) + 1 + mc.bitsStandardWord
         # compressed
         numNonZero = 2
-        rot2indicesBits = numNonZero * math.ceil(math.log(maxDegree, 2)) + mc.bitsStandardWord
-        rot2valuesBits = numNonZero * (math.ceil(math.log(2 * maxDegree, 2)) + 1) + mc.bitsStandardWord
-        rot2numBitsComp = rot2indicesBits + rot2valuesBits
+        rot2indicesBits = numNonZero * math.ceil(math.log(maxDegree, 2))
+        rot2valuesBits = numNonZero * (math.ceil(math.log(2 * maxDegree, 2)) + 1)
+        rot2numBitsComp = rot2indicesBits + rot2valuesBits + + mc.bitsStandardWord
 
         self.assertEqual(exp.bitsRequiredExponential, rot1numBitsExp + rot2numBitsExp)
         # number of rotation bits for each rotation + 2 words to hold size of indices if they exist (up

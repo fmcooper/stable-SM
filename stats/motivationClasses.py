@@ -28,7 +28,7 @@ class experiment:
             # compressed
             self.bitsRequiredCompressed += self.calculateBitsCompressed(truncatedR)
 
-        self.bitsRequiredCompressed += + 2 * bitsStandardWord
+        self.bitsRequiredCompressed += 2 * bitsStandardWord
 
 
     def calculateBitsExponential(self, r):
@@ -61,13 +61,13 @@ class experiment:
             return bitsStandardWord
 
         # (1) indices: we have numNonZero number of numbers up to n
-        indicesBitsReq = math.ceil(math.log(len(r), 2)) * numNonZero + bitsStandardWord
+        indicesBitsReq = math.ceil(math.log(len(r), 2)) * numNonZero
 
         # (2) values: we have numNonZero number of numbers between -2n and 2n
-        elementsBitsReq = (math.ceil(math.log(2*len(r), 2)) + 1) * numNonZero + bitsStandardWord
+        elementsBitsReq = (math.ceil(math.log(2*len(r), 2)) + 1) * numNonZero
 
-        # number of bits required to store the indices and values
-        return indicesBitsReq + elementsBitsReq
+        # number of bits required to store the indices and values and the number of indices or values
+        return indicesBitsReq + elementsBitsReq  + bitsStandardWord
 
 
     # gets the number of non-zero elements in a profile
