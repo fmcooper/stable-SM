@@ -55,6 +55,9 @@ def main():
     # create plots
     createPlot()
 
+    # create tables
+    createLatex()
+
     exit(0)
 
 
@@ -168,17 +171,9 @@ def createPlot():
     avBitsExp = []
     z5PerBitsExp = []
     z95PerBitsExp = []
-    z16PerBitsExp = []
-    z84PerBitsExp = []
-    z2p5PerBitsExp = []
-    z97p5PerBitsExp = []
     avBitsIndices = []
     z5PerBitsIndices = []
     z95PerBitsIndices = []
-    z16PerBitsIndices = []
-    z84PerBitsIndices = []
-    z2p5PerBitsIndices = []
-    z97p5PerBitsIndices = []
     n = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000]
 
     
@@ -186,19 +181,11 @@ def createPlot():
         avBitsExp.append(float(d[exp+'medianBitsExp'][0]))
         z5PerBitsExp.append(float(d[exp+'5PerBitsExp'][0]))
         z95PerBitsExp.append(float(d[exp+'95PerBitsExp'][0]))
-        z16PerBitsExp.append(float(d[exp+'16PerBitsExp'][0]))
-        z84PerBitsExp.append(float(d[exp+'84PerBitsExp'][0]))
-        z2p5PerBitsExp.append(float(d[exp+'2p5PerBitsExp'][0]))
-        z97p5PerBitsExp.append(float(d[exp+'97p5PerBitsExp'][0]))
 
         # avBitsTruncated.append(float(d[exp+'avBitsTruncated'][0]))
         avBitsIndices.append(float(d[exp+'medianBitsIndices'][0]))
         z5PerBitsIndices.append(float(d[exp+'5PerBitsIndices'][0]))
         z95PerBitsIndices.append(float(d[exp+'95PerBitsIndices'][0]))
-        z16PerBitsIndices.append(float(d[exp+'16PerBitsIndices'][0]))
-        z84PerBitsIndices.append(float(d[exp+'84PerBitsIndices'][0]))
-        z2p5PerBitsIndices.append(float(d[exp+'2p5PerBitsIndices'][0]))
-        z97p5PerBitsIndices.append(float(d[exp+'97p5PerBitsIndices'][0]))
         
 
     # converting to np arrays
@@ -243,14 +230,14 @@ def createPlot():
     plt.ylabel("bits required")
 
     expColor = 'orangered'
-    plt.plot(nCurveData, avBitsExpCurveData, 'o', color=expColor, label="Exponential representation")
-    plt.plot(nNCD, avBitsExpNCD, 'o', color=expColor, fillstyle='none', label="Exponential representation (not used to calculate curve)")
+    plt.plot(nCurveData, avBitsExpCurveData, 'o', color=expColor, label="Exponential weight approach")
+    plt.plot(nNCD, avBitsExpNCD, 'o', color=expColor, fillstyle='none')
     plt.plot(newx, np.exp(func(np.log(newx), poptExpAv[0], poptExpAv[1], poptExpAv[2])), '-', color=expColor)
     plt.fill_between(newx, np.exp(func(np.log(newx), poptExp5[0], poptExp5[1], poptExp5[2])), np.exp(func(np.log(newx), poptExp95[0], poptExp95[1], poptExp95[2])), color=expColor, alpha=.5)
 
     indColor = 'seagreen'
-    plt.plot(nCurveData, avBitsIndicesCurveData, 'o', color=indColor, label="Compressed representation")
-    plt.plot(nNCD, avBitsIndicesNCD, 'o', color=indColor, fillstyle='none', label="Compressed representation (not used to calculate curve)")
+    plt.plot(nCurveData, avBitsIndicesCurveData, 'o', color=indColor, label="Vector-based weight approach")
+    plt.plot(nNCD, avBitsIndicesNCD, 'o', color=indColor, fillstyle='none')
     plt.plot(newx, np.exp(func(np.log(newx), poptIndAv[0], poptIndAv[1], poptIndAv[2])), '-', color=indColor)
     plt.fill_between(newx, np.exp(func(np.log(newx), poptInd5[0], poptInd5[1], poptInd5[2])), np.exp(func(np.log(newx), poptInd95[0], poptInd95[1], poptInd95[2])), color=indColor, alpha=.5)
 
@@ -272,7 +259,7 @@ def createPlot():
 
 
     # general plot info
-    plt.legend()
+    plt.legend(loc='lower right')
     ax = plt.subplot()
     # ax.spines["right"].set_visible(False)    
     # ax.spines["top"].set_visible(False) 
@@ -283,7 +270,33 @@ def createPlot():
     ax.xaxis.grid(True)
     # plt.show()
     plt.tight_layout()
-    plt.savefig("./stats/motivation/spaceComparison.pdf")
+    plt.savefig("./stats/motivation/plot_space.pdf")
+
+
+# create latex tables
+def createLatex():
+    # # space requirement table
+    latexpaper = dirName + "/" + "latex_table_space.txt"
+    latexPaperFile = open(latexpaper, 'w')
+    latexPaperFile.write('\\begin{table}[] \centerline{')
+    latexPaperFile.write('\\begin{tabular}{ R{1.2cm} | R{1.5cm} R{2.5cm} R{2cm} R{2cm} R{2cm} R{2.5cm} R{2cm} R{2cm} R{2cm} }') 
+    latexPaperFile.write('\hline\hline ')
+    latexPaperFile.write('&& \multicolumn{4}{c}{Exponential weight} & \multicolumn{4}{c}{Vector-based weight} \\\\ \n')
+    latexPaperFile.write('Case & $N_I$ & av & median & $5$th & $95$th & av & median & $5$th & $95$th \\\\ \n')
+    latexPaperFile.write('\hline ')
+
+    for i in range(0, len(expTypeNames)):
+        exp = expTypeNames[i]
+        latexPaperFile.write('{} & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ & ${}$ \\\\ \n '.format(\
+            exp, int(float(d[exp+'totalInstancesUsedInCalcs'][0])), \
+            d[exp+'avBitsExp'][0], d[exp+'medianBitsExp'][0], d[exp+'5PerBitsExp'][0], \
+            d[exp+'95PerBitsExp'][0], d[exp+'avBitsIndices'][0], d[exp+'medianBitsIndices'][0], \
+            d[exp+'5PerBitsIndices'][0], d[exp+'95PerBitsIndices'][0]))
+
+    # finishing the latex results file
+    latexPaperFile.write('\hline\hline \end{tabular}} \caption{Minimum number of bits required to store edge capacities of a network (exponential weight edge capacities) and vb-network (vector-based weight edge capacities). In this table, $5$th and $95$th refer to the $5$th and $95$th percentiles respectively, and $N_I$ denotes the number of instances that did not timeout and had at least one rotation, and were thus used in space requirement calculations.} \label{sm_rm_space_table} \end{table} ')
+    latexPaperFile.close 
+
 
 
 # gets the average of an array or returns -1 if array is 0 in length

@@ -13,7 +13,7 @@ class TestBitCalculations(unittest.TestCase):
         exp = mc.experiment([])
         result = exp.calculateBitsExponential(data)
         expNum = 2*(7**5) + 7**2 - 3*7
-        numBits = math.ceil(math.log(expNum, 2)) + 1 + mc.bitsStandardWord
+        numBits = math.ceil(math.log(expNum, 2)) + mc.bitsStandardWord
         self.assertEqual(result, numBits)
 
     def test_exponential_zeros(self):
@@ -96,7 +96,7 @@ class TestBitCalculations(unittest.TestCase):
         # 1st rotation
         # exponential
         rot1expNum = -1*(maxDegree**2) + 2*maxDegree - 1
-        rot1numBitsExp = math.ceil(math.log(abs(rot1expNum), 2)) + 1 + mc.bitsStandardWord
+        rot1numBitsExp = math.ceil(math.log(abs(rot1expNum), 2)) + mc.bitsStandardWord
         # compressed
         numNonZero = 3
         rot1indicesBits = numNonZero * math.ceil(math.log(maxDegree, 2))
@@ -106,7 +106,7 @@ class TestBitCalculations(unittest.TestCase):
         # 2nd rotation
         # exponential
         rot2expNum = -1*maxDegree + 1
-        rot2numBitsExp = math.ceil(math.log(abs(rot2expNum), 2)) + 1 + mc.bitsStandardWord
+        rot2numBitsExp = math.ceil(math.log(abs(rot2expNum), 2)) + mc.bitsStandardWord
         # compressed
         numNonZero = 2
         rot2indicesBits = numNonZero * math.ceil(math.log(maxDegree, 2))

@@ -46,7 +46,7 @@ class experiment:
         if exponentialNumber == 0:
             numBits = 1 + bitsStandardWord
         else:
-            numBits = math.ceil(math.log(abs(exponentialNumber), 2)) + 1 + bitsStandardWord
+            numBits = math.ceil(math.log(abs(exponentialNumber), 2)) + bitsStandardWord
         return numBits
 
 
