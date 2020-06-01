@@ -147,6 +147,8 @@ Currently collection of results is disabled in the ``stats/motivation.py`` file.
 python stats/motivation.py ./Evaluations/
 ```
 
+Note that the average number of rotations etc. will differ from the main experiments since only instances that had at least one rotation are analysed.
+
 ******************************
 
 # 7) versions
