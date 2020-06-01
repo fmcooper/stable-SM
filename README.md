@@ -153,6 +153,10 @@ Note that the average number of rotations etc. will differ from the main experim
 
 # 7) versions
 
+V1.0.5
+* updates to table and plot makers
+* README updated
+
 V1.0.4
 * updates to table and plot makers
 * README updated
