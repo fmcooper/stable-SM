@@ -36,9 +36,9 @@ def main():
 
     # calculate results
     now = datetime.datetime.now()
-    avstatsFile = open(avstats, 'w')
-    avstatsFile.write("Stats runthrough conducted at: " + now.strftime("%Y-%m-%d %H:%M") + "\n\n")
-    avstatsFile.close()
+    # avstatsFile = open(avstats, 'w')
+    # avstatsFile.write("Stats runthrough conducted at: " + now.strftime("%Y-%m-%d %H:%M") + "\n\n")
+    # avstatsFile.close()
 
     # for each experiment type
     for ind, exptype in enumerate(expTypeNames):
@@ -48,7 +48,7 @@ def main():
         postPathResults = "/Results_stable/"
         postPathInstances = "/Instances/"
 
-        calculateResults(exptype, prePath, postPathInstances, postPathResults, postPathResultsGSNS, postPathResultsGSS)
+        # calculateResults(exptype, prePath, postPathInstances, postPathResults, postPathResultsGSNS, postPathResultsGSS)
 
         # get averages
         getAverages(exptype)
@@ -577,6 +577,8 @@ def createPlot():
     plt.xlabel("$n$ $\log$ $n$")
     plt.ylabel("Mean number of stable matchings $|\mathcal{M}_s|_{av}$")
     ax = plt.subplot()
+    plt.xlim(xmin=0, xmax=7000)
+    plt.ylim(ymin=0)
     # ax.spines["right"].set_visible(False)    
     # ax.spines["top"].set_visible(False)
     plt.grid()
@@ -602,6 +604,8 @@ def createPlot():
     plt.plot(newx, np.exp(func1D(np.log(newx), secostCV[0], secostCV[1])), '-', color='gold')
     
     plt.legend()
+    plt.xlim(xmin=10, xmax=1000)
+    plt.ylim(ymin=1)
     plt.xlabel("$n$")
     plt.ylabel("Mean sex-equal score")
     plt.xscale('log')
@@ -631,6 +635,8 @@ def createPlot():
     plt.plot(newx, func2D(newx, egalcostGENCV[0], egalcostGENCV[1], egalcostGENCV[2]), '-', color='seagreen')
     plt.plot(newx, func2D(newx, egalcostCV[0], egalcostCV[1], egalcostCV[2]), '-', color='gold')
 
+    plt.xlim(xmin=0, xmax=1000)
+    plt.ylim(ymin=0)
     plt.legend()
     plt.xlabel("$n$")
     plt.ylabel("Mean cost")
@@ -656,6 +662,8 @@ def createPlot():
     plt.plot(newx, func2D(newx, avGMfirstChoicesCV[0], avGMfirstChoicesCV[1], avGMfirstChoicesCV[2]), '-', color='orangered')
     plt.plot(newx, func2D(newx, avGENfirstChoicesCV[0], avGENfirstChoicesCV[1], avGENfirstChoicesCV[2]), '-', color='seagreen')
 
+    plt.xlim(xmin=0, xmax=1000)
+    plt.ylim(ymin=0)
     plt.legend()
     plt.xlabel("$n$")
     plt.ylabel("Mean number of first choices")
@@ -682,6 +690,8 @@ def createPlot():
     plt.plot(newx, func2D(newx, avGMdegreeCV[0], avGMdegreeCV[1], avGMdegreeCV[2]), '-', color='orangered')
     plt.plot(newx, func2D(newx, avGENdegreeCV[0], avGENdegreeCV[1], avGENdegreeCV[2]), '-', color='seagreen')
 
+    plt.xlim(xmin=0, xmax=1000)
+    plt.ylim(ymin=0)
     plt.legend()
     plt.xlabel("$n$")
     plt.ylabel("Mean degree")
